@@ -1,0 +1,188 @@
+<table id="ReportTable" width="1200" cellpadding="2" cellspacing="2" class="myClass">  
+      
+      <tbody><tr><th colspan="9">  Danh sách key vừa tạo</th></tr>
+    <tr>  
+      <th>license_serial</th>
+      <th>Mã License</th>  
+      <th>Số máy đã đăng kí</th>  
+      <th>Ngày tạo</th>  
+      <th>type_expire_date</th>
+      <th>Loại phần mềm</th>
+      <th>license_no_computers</th>
+      <th>license_no_instance</th>
+      <th>status</th>
+      
+      <th>id_user</th>
+    </tr>  
+        <tr>  
+        <td><center>  
+          10719c93b6cf0265ef9711ed8a2ffaa1  
+        </center></td> 
+      <td><center>  
+          42B42-D22FC-9D016-F684F  
+        </center></td>  
+      
+      <td><center>  
+          0  
+        </center></td>  
+        <td><center>  
+          2016-07-23  
+        </center></td>  
+        <td><center>  
+          365  
+        </center></td>  
+        <td><center>  
+          DutoanGXD  
+        </center></td>  
+          <td><center>  
+          1  
+        </center></td>   
+         <td><center>  
+          1  
+        </center></td>  
+         <td><center>  
+          1  
+        </center></td> 
+       <td><center>  
+          71  
+        </center></td>  
+    </tr>  
+    
+        <tr>  
+        <td><center>  
+          d91febb4cdaa7a6efccec278998cea55  
+        </center></td> 
+      <td><center>  
+          97776-DB6D1-D77B8-96386  
+        </center></td>  
+      
+      <td><center>  
+          0  
+        </center></td>  
+        <td><center>  
+          2016-07-23  
+        </center></td>  
+        <td><center>  
+          365  
+        </center></td>  
+        <td><center>  
+          DutoanGXD  
+        </center></td>  
+          <td><center>  
+          1  
+        </center></td>   
+         <td><center>  
+          1  
+        </center></td>  
+         <td><center>  
+          1  
+        </center></td> 
+       <td><center>  
+          71  
+        </center></td>  
+    </tr>  
+    
+        <tr>  
+        <td><center>  
+          a7782f37973dddb80aeb6c5384f172b5  
+        </center></td> 
+      <td><center>  
+          421E4-EC1F2-FC188-FA69B  
+        </center></td>  
+      
+      <td><center>  
+          0  
+        </center></td>  
+        <td><center>  
+          2016-07-23  
+        </center></td>  
+        <td><center>  
+          365  
+        </center></td>  
+        <td><center>  
+          DutoanGXD  
+        </center></td>  
+          <td><center>  
+          1  
+        </center></td>   
+         <td><center>  
+          1  
+        </center></td>  
+         <td><center>  
+          1  
+        </center></td> 
+       <td><center>  
+          71  
+        </center></td>  
+    </tr>  
+    
+        <tr>  
+        <td><center>  
+          58a6ee6e953a73e9df5a5901c3eb85c9  
+        </center></td> 
+      <td><center>  
+          4DE6E-1C2AF-584D3-0DF15  
+        </center></td>  
+      
+      <td><center>  
+          0  
+        </center></td>  
+        <td><center>  
+          2016-07-23  
+        </center></td>  
+        <td><center>  
+          365  
+        </center></td>  
+        <td><center>  
+          DutoanGXD  
+        </center></td>  
+          <td><center>  
+          1  
+        </center></td>   
+         <td><center>  
+          1  
+        </center></td>  
+         <td><center>  
+          1  
+        </center></td> 
+       <td><center>  
+          71  
+        </center></td>  
+    </tr>  
+    
+        <tr>  
+        <td><center>  
+          3c8b7b2da8d3da398871024bc49306c7  
+        </center></td> 
+      <td><center>  
+          86FF6-C887B-A76B4-38E4C  
+        </center></td>  
+      
+      <td><center>  
+          0  
+        </center></td>  
+        <td><center>  
+          2016-07-23  
+        </center></td>  
+        <td><center>  
+          365  
+        </center></td>  
+        <td><center>  
+          DutoanGXD  
+        </center></td>  
+          <td><center>  
+          1  
+        </center></td>   
+         <td><center>  
+          1  
+        </center></td>  
+         <td><center>  
+          1  
+        </center></td> 
+       <td><center>  
+          71  
+        </center></td>  
+    </tr>  
+    
+      </tbody></table>  
+

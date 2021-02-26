@@ -1,0 +1,81 @@
+/* 
+    Document   : style_phone
+    Created on : Nov 15, 2013, 10:56:37 AM
+    Author     : NGOCBICH
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+*{
+    font-family: sans-serif, arial; 
+    font-size: 13px;
+    line-height: 130%;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+.page{
+    margin: auto; 
+    width: 1000px;
+}
+.header{
+    margin-top: 15px; 
+    background:url('../images/header.png') repeat;
+    height: 160px;
+}
+.logo{
+    margin: 20px;
+    float:left;
+    width: 170px;
+}
+#ht{
+     width:780px; 
+}
+.buttom{
+    margin: 20px 0px 0px 20px;
+    width: 150px;
+    height: 45px;
+    background:#FF0000;     
+    border: #000066 solid 2px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #ffffff; 
+    font-weight: 600;
+    float: left;
+    text-decoration: none;
+}
+.iuser{
+    margin: 20px 0px;
+    width: 210px;
+    background: #1F78FF;
+    border: #000a28 solid 3px;
+    float: right;
+}
+.iuser ul{
+    text-decoration: none;
+    
+}
+.iuser li{
+    text-decoration: none;
+    color: #fffff;
+    text-decoration: none;
+    border-bottom: #05B2D2 solid 2px;
+}
+.warmp{
+    margin:10px 0; 
+}
+.info{
+    border: #8a857d solid 1px;
+    border-radius: 5px;
+    background:  #00FFFFFF;
+    padding: 5px;
+}
+.footer{
+    background: #000066;
+    color: #F3F3FF;
+ }
+ 

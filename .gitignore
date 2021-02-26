@@ -1,0 +1,16 @@
+/node_modules
+/public/storage
+/storage/*.key
+/storage/app/bk
+/vendor
+/.idea
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+public/captcha/tmp/captcha.txt
+/public/captcha/tmp/captcha.txt
+/public/test.xlsx
+

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    <html lang="en">
+<head>
+    <title>GXD - License </title>
+    <meta name="description" content="abc">
+    <meta name="copyright" content="">
+    <meta name="author" content="Giá Xây Dựng">
+    <link rel="stylesheet" type="text/css" href="http://giaxaydung.vn/kichhoat/template/css/style.css" />
+    <script language="javascript" type="text/javascript" src="http://giaxaydung.vn/kichhoat/template/js/datetimepicker.js"></script>
+    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type = "text/javascript" ></script>
+    <script language = "javascript" type = "text/javascript" src = "http://giaxaydung.vn/kichhoat/template/js/checkbox.js" ></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script language="javascript">
+        function show_info_detail(str)
+        {
+            document.getElementById("search_advanced").style.display = 'block';
+            if (str == "")
+            {
+                document.getElementById("search_advanced").innerHTML = "";
+                return;
+            }
+
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function()
+            {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("search_advanced").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "editlicense_ajax.php?id=" + str, true);
+            xmlhttp.send();
+        }
+
+        function hide_info_detail()
+        {
+            document.getElementById("search_advanced").style.display = 'none';
+        }
+
+        function toggle(x, origColor) {
+            var newColor = 'red';
+            if (x.style) {
+                x.style.backgroundColor = (newColor == x.style.backgroundColor) ? origColor : newColor;
+            }
+        }
+
+    </script>
+</head>
+<body>
+        <div id="wrap">
+        <div id="header">
+            <div id="top">
+                <div class="logo"><img src='../template/images/logo.png'></div>
+                <div align="right">
+                    <p>Công ty CP Giá Xây Dựng</p>
+                    <div id="nav">
+                        <ul>
+                            <li><a target="blank" href="http://giaxaydung.vn">Trang chủ</a></li>
+                            <li><a target="blank" href="http://giaxaydung.vn/diendan">Diễn đàn</a></li>
+                            <li><a target="blank" href="http://phanmem.giaxaydung.vn">Phần mềm</a></li>
+                            <li><a target="blank" href="http://gxd.vn">Gxd.vn</a></li>
+                            <li><a target="blank" href="http://dutoangxd.vn">Dự toán GXD</a></li>
+                        </ul>
+                    </div>
+                    <p>Hotline:<span> 0985.099.938</span> Email: <span>phanmem@giaxaydung.com</span></p>
+                </div>
+            </div>
+            <div id = "mainmenu">
+                <ul>
+                    <li><a class="active" href="http://giaxaydung.vn/kichhoat/views/administrator.php">Home</a></li>
+
+                     <li class="moreitem"><a href="#">Quản lý Key</a>                        <div class="moredropdown">
+                             <div><a href="http://giaxaydung.vn/kichhoat/views/genkeys.php">Tạo key</a></div>                            <div><a href="http://giaxaydung.vn/kichhoat/views/report_key.php">Thống kê Key</a></div>                                    
+                            <div><a href="http://giaxaydung.vn/kichhoat/report_dt.php"> Key Dự toán</a></div>                            <div><a href="http://giaxaydung.vn/kichhoat/report_dthau.php">Key Dự thầu</a></div>                            <div><a href="http://giaxaydung.vn/kichhoat/report_qt.php">Key Quyết toán</a></div>                        </div>
+                    </li>
+                    <li class="moreitem"><a href="http://giaxaydung.vn/kichhoat/views/user.php">Quản lý user</a>
+                        <div class="moredropdown">
+                                                        <div><a href="http://giaxaydung.vn/kichhoat/views/createaccount.php">Tạo user</a></div>
+                        </div>
+                    </li>
+
+                    <li class="moreitem"><a href="#">Đăng ký</a>	
+                        <div class="moredropdown">
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/report_date.php">Đăng ký trong ngày</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/report_last_date.php">Đăng ký 1 ngày trước</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/report_2last_date.php">Đăng ký 2 ngày trước</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/report_week.php">Đăng ký trong tuần</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/report_month.php">Đăng ký trong tháng</a></div>
+                        </div>
+                    </li>
+                    <li class="moreitem"><a href="#">Trạng thái</a>	
+                        <div class="moredropdown">
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/last_runing_date.php">Sử dụng trong ngày</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/expire_date.php">Còn 2 ngày hết hạn</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/expire_fdate.php">Còn 3 ngày hết hạn</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/expire_week.php">Còn 1 tuần hết hạn</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/expire_last_date.php">Key đã hết hạn 1 ngày</a></div>
+                            <div><a href="http://giaxaydung.vn/kichhoat/status_use/expire_tlast_date.php">Key đã hết hạn 5 ngày</a></div>
+                        </div>
+                    </li>
+                    <li class="moreitem"><a href="http://giaxaydung.vn/kichhoat/sendmail/form.php">Email</a>	
+                    </li>
+                </ul>	
+            </div>
+            <div id='user'>
+        <ul>
+		  <li class='moreitem1'><a  href='#'>ngocbichgxd</a>	
+		    <div class='moredropdown1'>
+			<div><a href='../views/user/changepass.php'>Đổi mật khẩu</a></div>
+		    <div><a href='../views/thoat.php'>Log out</a></div>
+	      </li>
+		</ul>
+	 </div>	
+	 
+<div id= "searchbar">
+    <form  action = "http://giaxaydung.vn/kichhoat/views/mainresult.php" method = "post" name = "serch_bar_form">
+        <table border = "0" width="1100px">
+            <tr>
+                <td> Mã kích hoạt </td> 
+                <td> <input name = "txt_license_serial" type = "text" size = "25" value = ""></td>
+                <td> Ngày chạy cuối </td>
+                <td> <input name = "txt_last_running_days" type = "text" size = "10" value=""></td>
+                <td> Ngày hết hạn </td>
+                <td> <input name = "txt_expire_days" type = "text" size = "10" value="" title="Tìm theo mã kích hoạt"></a></td>
+                <td>Họ tên</td> 
+                <td> <input name = "txt_customer_name" type = "text" size = "18" value=""></td>
+                <td> Email </td> 
+                <td> <input name = "txt_customer_email" type = "text" size = "18" value = ""></td>
+                <td> <button type="submit" value="Search"><img src="../template/img/search.jpg" with="15" height="15"/></button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id = "searchresult">	
+</div>
+
+
+
+
+
+<form action="" method="post">
+    <h2 align="center" class="gxdh2">Thông tin tìm kiếm</h2>
+    </form>
+<div id="footer">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#checkall").click (function () {
+            var checkedStatus = this.checked;
+            $("#listcheck tbody tr").find(":checkbox").each(function () {
+                $(this).prop("checked", checkedStatus);
+            });
+        });
+    });
+</script>
+
+   <p style='color:blue'>Tổng số máy đã đăng ký tính đến thời điểm: 07/08/2013 là: <b>5757</b></p>  </div>
+  <div style="display:block; height:80px; background:#CCFFFF">
+<p style="font-family: arial; width:55%; padding:10px 0 0 5px; float:left; display:block; text-align:left; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #000000;"> © <a href="http://www.giaxaydung.vn/diendan/f329/dia-chi-lien-he-giao-dich-cong-viec-voi-cong-ty-gia-xay-dung-20760.html#post296829">Cty Giá xây dựng</a> - GP của Cục Báo chí - Bộ TT&amp;TT số 323/GP-CBC ngày 11/07/2008. <br>
+        Người chịu trách nhiệm chính: Ths. Nguyễn Thế Anh.<br>
+        Ghi rõ nguồn khi phát hành thông tin, tài liệu từ giaxaydung.vn<br>
+
+</p>
+<p style="font-family: arial; padding:10px 10px 0 0; float:right; display:block; text-align:right; width:40%; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #000000;"> <a href="http://giaxaydung.vn/diendan/duong_den_GXD.gif" target="_blank">Địa chỉ: Toà nhà số 2A/55 Nguyễn Ngọc Nại, Thanh Xuân, Hà Nội</a><br>
+                    Tel: 04.3 5682482, Fax: 04.3 5682483<br>
+                    Email: <a href="mailto:theanh@giaxaydung.com">theanh@giaxaydung.com</a>
+	</div>
+</div>
+</body>
+</html>

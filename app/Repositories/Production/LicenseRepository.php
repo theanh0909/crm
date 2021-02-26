@@ -1,0 +1,144 @@
+<?php
+
+namespace App\Repositories\Production;
+
+
+use App\Models\License;
+use App\Repositories\LicenseRepositoryInterface;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+class LicenseRepository extends BaseRepository implements LicenseRepositoryInterface
+{
+    public function __construct(License $model)
+    {
+        parent::__construct($model);
+    }
+
+    public function buildQueryByFilter($query, $filter)
+    {
+        if(array_key_exists('query', $filter)) {
+            $searchWork = $filter['query'];
+            if(!empty($searchWork)) {
+                $query = $query->where(function($q) use ($searchWork) {
+                    $q->where('license_serial', 'LIKE', "%$searchWork%")
+                        ->orWhere('license_key', 'LIKE', "%$searchWork%")
+                        ->orWhere('license_is_registered', 'LIKE', "%$searchWork%")
+                        ->orWhere('license_created_date', 'LIKE', "%$searchWork%")
+                        ->orWhere('type_expire_date', 'LIKE', "%$searchWork%")
+                        ->orWhere('hardware_id', 'LIKE', "%$searchWork%")
+                        ->orWhere('sell_date', 'LIKE', "%$searchWork%")
+                        ->orWhere('email_customer', 'LIKE', "%$searchWork%");
+                });
+
+                $query->orWhereHas('customer',function($q) use ($searchWork) {
+                    $q->where('customer_name', 'LIKE', "%$searchWork%")
+                        ->orWhere('customer_phone', 'LIKE', "%$searchWork%")
+                        ->orWhere('customer_email', 'LIKE', "%$searchWork%");
+                });
+
+            }
+
+            unset($filter['query']);
+        }
+        if(array_key_exists('status', $filter)) {
+            $searchWork = $filter['status'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('status', "$searchWork");
+            }
+
+            unset($filter['query']);
+        }
+
+        if(array_key_exists('product_type', $filter)) {
+            $searchWork = $filter['product_type'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('product_type', "$searchWork");
+            }
+
+            unset($filter['product_type']);
+        }
+
+        if(array_key_exists('status_sell', $filter)) {
+            $searchWork = $filter['status_sell'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('status_sell', $searchWork);
+            }
+
+            unset($filter['status_sell']);
+        }
+
+        if(array_key_exists('status_register', $filter)) {
+            $searchWork = $filter['status_register'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('status_register', $searchWork);
+            }
+
+            unset($filter['status_register']);
+        }
+
+        if(array_key_exists('email_not_null', $filter)) {
+            $searchWork = $filter['email_not_null'];
+            if(!is_blank($searchWork)) {
+                $query = $query->whereNotNull('email_customer');
+            }
+
+            unset($filter['email_not_null']);
+        }
+
+        if(array_key_exists('exported', $filter)) {
+            $searchWork = $filter['exported'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('exported', $searchWork);
+            }
+
+            unset($filter['exported']);
+        }
+
+        if(array_key_exists('exported_status', $filter)) {
+            $searchWork = $filter['exported_status'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('exported_status', $searchWork);
+            }
+
+            unset($filter['exported_status']);
+        }
+
+        if(array_key_exists('status_email', $filter)) {
+            $searchWork = $filter['status_email'];
+            if(!is_blank($searchWork)) {
+                $query = $query->where('status_email', $searchWork);
+            }
+
+            unset($filter['status_email']);
+        }
+
+
+        if(array_key_exists('date', $filter)) {
+            $searchWork = $filter['date'];
+            if(!empty($searchWork)) {
+                $dateRange = explode('-',$searchWork);
+
+                $query = $query->whereBetween('created_at', [
+                    Carbon::parse($dateRange[0])->format('Y-m-d 00:00:00'),
+                    Carbon::parse($dateRange[1])->format('Y-m-d 23:59:59')
+                ]);
+            }
+
+            unset($filter['date']);
+        }
+
+        if(array_key_exists('updated_at', $filter)) {
+            $searchWork = $filter['updated_at'];
+            if(!empty($searchWork)) {
+                $query = $query->whereBetween(DB::raw('DATE(updated_at)'), [$searchWork, $searchWork]);
+            }
+
+            unset($filter['updated_at']);
+        }
+
+
+        $query = $query->with('product');
+        return parent::buildQueryByFilter($query, $filter); // TODO: Change the autogenerated stub
+    }
+}

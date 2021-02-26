@@ -1,0 +1,75 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=VN, ST=HD, L=Hanoi, O=GXD, OU=changeme, CN=changeme/name=Hiephv/emailAddress=hiephv@gmail.com
+        Validity
+            Not Before: Mar  8 09:41:28 2012 GMT
+            Not After : Mar  6 09:41:28 2022 GMT
+        Subject: C=VN, ST=HD, L=Hanoi, O=GXD, OU=changeme, CN=changeme/name=server/emailAddress=hiephv@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (1024 bit)
+                Modulus:
+                    00:9e:2d:66:24:4e:70:91:ec:35:f9:8e:f9:c2:7a:
+                    b2:00:71:a3:21:c3:c5:7d:a7:e7:0d:6b:64:d2:f4:
+                    f5:23:4d:ce:94:73:d6:bb:b9:e4:d3:3d:38:03:97:
+                    62:75:4d:99:0c:58:4d:4d:f5:2c:cf:33:71:ec:b1:
+                    67:4b:45:8d:d3:18:7e:f9:ae:31:93:0b:4a:0e:6b:
+                    ba:cb:cd:8a:57:32:79:c0:ab:d3:9a:77:8a:92:cb:
+                    b2:a3:28:6e:8a:0c:8e:bf:90:73:ca:63:0c:1b:61:
+                    81:7a:9d:65:60:b9:b2:37:82:03:a4:d9:82:d9:2f:
+                    43:a3:b7:6c:9e:12:b5:45:a7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                Easy-RSA Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                E3:D7:11:2A:8A:08:53:E6:46:06:F8:4A:EF:B8:C5:9E:33:08:73:C7
+            X509v3 Authority Key Identifier: 
+                keyid:EB:63:02:3D:34:1D:B5:8F:CA:29:3E:69:A1:E8:3D:71:7D:1A:0D:89
+                DirName:/C=VN/ST=HD/L=Hanoi/O=GXD/OU=changeme/CN=changeme/name=Hiephv/emailAddress=hiephv@gmail.com
+                serial:90:BB:29:93:7A:53:C3:FE
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: md5WithRSAEncryption
+        b9:ca:ea:b2:8c:9c:26:ae:81:92:f4:42:ef:db:f9:cb:f5:fb:
+        dd:ca:ec:d8:84:8f:bd:5a:2f:e9:6f:91:f7:03:76:28:d6:ce:
+        d4:09:4b:5d:3d:c5:f4:20:ea:af:1d:15:ed:18:0d:e7:64:90:
+        5e:6d:e0:0d:c8:e3:f7:1a:eb:95:09:0d:49:3e:09:27:50:89:
+        ca:09:ff:4f:bd:bb:46:40:d2:d3:26:c3:80:89:a0:fe:bd:ed:
+        cf:c3:ad:cb:57:7b:54:e9:b7:05:6b:4a:03:35:eb:5e:ef:dd:
+        23:c8:ec:8d:25:09:09:85:7d:4e:72:fd:da:48:4d:3f:d3:50:
+        9e:24
+-----BEGIN CERTIFICATE-----
+MIID+zCCA2SgAwIBAgIBATANBgkqhkiG9w0BAQQFADCBkDELMAkGA1UEBhMCVk4x
+CzAJBgNVBAgTAkhEMQ4wDAYDVQQHEwVIYW5vaTEMMAoGA1UEChMDR1hEMREwDwYD
+VQQLEwhjaGFuZ2VtZTERMA8GA1UEAxMIY2hhbmdlbWUxDzANBgNVBCkTBkhpZXBo
+djEfMB0GCSqGSIb3DQEJARYQaGllcGh2QGdtYWlsLmNvbTAeFw0xMjAzMDgwOTQx
+MjhaFw0yMjAzMDYwOTQxMjhaMIGQMQswCQYDVQQGEwJWTjELMAkGA1UECBMCSEQx
+DjAMBgNVBAcTBUhhbm9pMQwwCgYDVQQKEwNHWEQxETAPBgNVBAsTCGNoYW5nZW1l
+MREwDwYDVQQDEwhjaGFuZ2VtZTEPMA0GA1UEKRMGc2VydmVyMR8wHQYJKoZIhvcN
+AQkBFhBoaWVwaHZAZ21haWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
+gQCeLWYkTnCR7DX5jvnCerIAcaMhw8V9p+cNa2TS9PUjTc6Uc9a7ueTTPTgDl2J1
+TZkMWE1N9SzPM3HssWdLRY3TGH75rjGTC0oOa7rLzYpXMnnAq9Oad4qSy7KjKG6K
+DI6/kHPKYwwbYYF6nWVgubI3ggOk2YLZL0Ojt2yeErVFpwIDAQABo4IBYTCCAV0w
+CQYDVR0TBAIwADARBglghkgBhvhCAQEEBAMCBkAwNAYJYIZIAYb4QgENBCcWJUVh
+c3ktUlNBIEdlbmVyYXRlZCBTZXJ2ZXIgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFOPX
+ESqKCFPmRgb4Su+4xZ4zCHPHMIHFBgNVHSMEgb0wgbqAFOtjAj00HbWPyik+aaHo
+PXF9Gg2JoYGWpIGTMIGQMQswCQYDVQQGEwJWTjELMAkGA1UECBMCSEQxDjAMBgNV
+BAcTBUhhbm9pMQwwCgYDVQQKEwNHWEQxETAPBgNVBAsTCGNoYW5nZW1lMREwDwYD
+VQQDEwhjaGFuZ2VtZTEPMA0GA1UEKRMGSGllcGh2MR8wHQYJKoZIhvcNAQkBFhBo
+aWVwaHZAZ21haWwuY29tggkAkLspk3pTw/4wEwYDVR0lBAwwCgYIKwYBBQUHAwEw
+CwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBBAUAA4GBALnK6rKMnCaugZL0Qu/b+cv1
++93K7NiEj71aL+lvkfcDdijWztQJS109xfQg6q8dFe0YDedkkF5t4A3I4/ca65UJ
+DUk+CSdQicoJ/0+9u0ZA0tMmw4CJoP697c/DrctXe1TptwVrSgM1617v3SPI7I0l
+CQmFfU5y/dpITT/TUJ4k
+-----END CERTIFICATE-----
