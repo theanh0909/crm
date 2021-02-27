@@ -65,6 +65,9 @@
                    
                 </div>
             </form>
+            <p>
+                <b>Tổng số: </b> {{count($transactions)}}
+            </p>
             <!--end::Search Form-->
         </div>
         <div class="card-header">
