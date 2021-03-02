@@ -102,7 +102,7 @@
                                 <td style="text-align: center;">
                                     @if($saleItem->status_prepaid != 0)
                                         @if(auth()->user()->level == 1)
-                                            <a href="{{route('admin.customer.confirm-pay', ['id' => $saleItem->id])}}" class="btn btn-success">
+                                            <a onclick="confirm('Bạn có chắc chắn xác nhận?')" href="{{route('admin.customer.confirm-pay', ['id' => $saleItem->id])}}" class="btn btn-success">
                                                 Xác nhận
                                             </a>
                                         @else

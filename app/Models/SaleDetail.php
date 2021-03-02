@@ -9,6 +9,7 @@ class SaleDetail extends Model
     protected $table = 'sale_details';
 
     protected $fillable = [
+        "transaction_id",
         "sale_id",
         "product",
         "product_type",

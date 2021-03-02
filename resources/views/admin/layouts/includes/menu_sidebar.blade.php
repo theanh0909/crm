@@ -25,7 +25,7 @@
 		<link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="images/DutoanGXD.ico" />
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 	</head>
 	<!--end::Head-->
@@ -35,8 +35,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="">
-				<img alt="Logo" src="assets/media/logos/logo-light.png" />
+			<a href="/">
+				<img alt="Logo" src="images/logo.png" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -78,8 +78,8 @@
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
-						<a href="index.html" class="brand-logo">
-							<img alt="Logo" src="assets/media/logos/logo-light.png" />
+						<a href="/" class="brand-logo">
+							<img alt="Logo" src="images/logo.png" style="max-width: 100%"/>
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->

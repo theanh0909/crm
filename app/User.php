@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\Sale;
 use App\Models\Transaction;
+use App\Models\Registered;
 use App\Models\TransactionWait;
 
 class User extends Authenticatable
@@ -61,5 +62,10 @@ class User extends Authenticatable
     public function transactionWait()
     {
         return $this->hasMany(TransactionWait::class);
+    }
+
+    public function registered()
+    {
+        return $this->hasMany(Registered::class, 'user_support_id', 'id');
     }
 }

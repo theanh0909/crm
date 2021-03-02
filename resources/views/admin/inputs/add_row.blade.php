@@ -73,4 +73,5 @@
     total = addCommas(parseInt(price) + parseInt(priceRequest));
     document.getElementById("total").innerHTML = total;
     $("#total-insert").val(total);
+    $('input[name=prepaid]').val(parseInt(price) + parseInt(priceRequest));
 </script>

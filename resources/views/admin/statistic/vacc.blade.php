@@ -65,9 +65,6 @@
                    
                 </div>
             </form>
-            <p>
-                <b>Tổng số: </b> {{count($transactions)}}
-            </p>
             <!--end::Search Form-->
         </div>
         <div class="card-header">
@@ -139,7 +136,10 @@
                     </tbody>
                     <tfoot>
                         <tr align="center">
-                            <td colspan="7" style="text-align: right">
+                            <td colspan="2">
+                                <b>Tổng số: </b> {{count($transactions)}}
+                            </td>
+                            <td colspan="4" style="text-align: right">
                                 <b>Tổng cộng:</b>
                             </td>
                             <td><b>{{\App\Helpers\Helper::vaccTotal($dateStartToView, $dateEndToView)}}</b></td>

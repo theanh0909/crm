@@ -129,13 +129,14 @@ class CustomerController extends Controller
         $name = NULL;
         
         if (!empty($request->name)) {
-            $sales = Sale::latest()->where('customer_name', 'like', '%' . $request->name . '%')
+            $sales = Sale::latest()->whereIn('status_prepaid', [1, 2])
+                                   ->where('customer_name', 'like', '%' . $request->name . '%')
                                    ->orWhere('customer_phone', 'like', '%' . $request->name . '%')
                                    ->orWhere('customer_email', 'like', '%' . $request->name . '%')
                                    ->paginate(10);
             $name = $request->name;
         } else {
-            $sales = Sale::latest()->paginate(10);
+            $sales = Sale::whereIn('status_prepaid', [1, 2])->latest()->paginate(10);
         }
         
         return view('admin.customer.no_paid', compact('sales', 'name'));

@@ -193,6 +193,7 @@
             totalFormat = total.replaceAll(',', '');
             $(this).parent().parent().remove();
             $('#total').html(addCommas(parseInt(totalFormat) - parseInt($(this).attr('price'))));
+            $('input[name=prepaid]').val(parseInt(totalFormat) - parseInt($(this).attr('price')));
             $("#total-insert").val(addCommas(parseInt(totalFormat) - parseInt($(this).attr('price'))));
             check = $('.product-lisst tr').length;
             
@@ -217,6 +218,7 @@
                 result = parseInt(convert($('#total').html())) - (parseInt(convert(totalNow)) - parseInt(convert(total)));
             }
             $('#total').html(addCommas(result));
+            $('input[name=prepaid]').val(result);
             $("#total-insert").val(addCommas(result));
 
         }
@@ -237,6 +239,7 @@
                 result = parseInt(convert($('#total').html())) - (parseInt(convert(totalNow)) - parseInt(convert(total)));
             }
             $('#total').html(addCommas(result));
+            $('input[name=prepaid]').val(result);
             $("#total-insert").val(addCommas(result));
         }
         function giamGia(rand)

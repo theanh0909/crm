@@ -49,9 +49,23 @@ class AdminController extends Controller
         $dateNow = date('Y-m-d');
         $dateDue = date('Y-m-d', strtotime($dateNow. ' + 15 days'));
         $dateExpire = date('Y-m-d', strtotime($dateNow . ' - 15 days'));
-        $keyDue = Registered::whereBetween('license_expire_date', [$dateNow, $dateDue])
-                            ->paginate(20); // key sắp hết từ 15 ngày trở về
-        $keyExpire = Registered::whereBetween('license_expire_date', [$dateExpire, $dateNow])->paginate(20); // key đã hết hạn 15 ngày hất lại
+    /**
+     * Nếu là admin thì lấy tất cả
+     * Ngược lại thì nhân viên của ai người đó chăm sóc
+     */
+        if (auth()->user()->level == 1) {
+            $keyDue = Registered::whereBetween('license_expire_date', [$dateNow, $dateDue])
+                                ->paginate(20); // key sắp hết từ 15 ngày trở về
+            $keyExpire = Registered::whereBetween('license_expire_date', [$dateExpire, $dateNow])
+                                ->paginate(20); // key đã hết hạn 15 ngày hất lại
+        } else {
+            $keyDue = Registered::where('user_support_id', auth()->user()->id)
+                                ->whereBetween('license_expire_date', [$dateNow, $dateDue])
+                                ->paginate(20); // key sắp hết từ 15 ngày trở về
+            $keyExpire = Registered::where('user_support_id', auth()->user()->id)
+                                    ->whereBetween('license_expire_date', [$dateExpire, $dateNow])
+                                    ->paginate(20); // key đã hết hạn 15 ngày hất lại
+        }
 
         return view('admin.index.index', compact(
             'keyActived', 'keyNotActived', 'customerCount', 'newKeys', 'keyDue', 'keyExpire'
@@ -215,17 +229,17 @@ class AdminController extends Controller
                     $so_ngay++;$loai_key++;
                     $donate_product = NULL;
 
-                    $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
+                    $transactionId = $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
 
-                    $this->insertSaleDetail($saleId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
+                    $this->insertSaleDetail($saleId, $transactionId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
 
                 } else if ($request->product_type[$key] == 1) { // khóa cứng
                     $donate_product = NULL;
                     $customer_type = 1;
                     $option = NULL;
-                    $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
+                    $transactionId = $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
 
-                    $this->insertSaleDetail($saleId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
+                    $this->insertSaleDetail($saleId, $transactionId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
                 } else if ($request->product_type[$key] == 2) { // học viên
                     $customer_type = 2;
                     $option = $request->option_learn[$phuong_thuc_hoc];
@@ -239,17 +253,17 @@ class AdminController extends Controller
                         $donation_key = 0;
                     }
 
-                    $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
+                    $transactionId = $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
 
-                    $this->insertSaleDetail($saleId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
+                    $this->insertSaleDetail($saleId, $transactionId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
                     
                 } else if ($request->product_type[$key] == 3) { // chứng chỉ
                     $donate_product = NULL;
                     $customer_type = 3;
                     $option = NULL;
-                    $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
+                    $transactionId = $this->insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product);
 
-                    $this->insertSaleDetail($saleId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
+                    $this->insertSaleDetail($saleId, $transactionId,  $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product, $prepaid);
                 }
             }
 
@@ -259,10 +273,11 @@ class AdminController extends Controller
         }
     }
 
-    public function insertSaleDetail($saleId, $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $method, $donate_key, $donate_product, $prepaid)
+    public function insertSaleDetail($saleId, $transactionId,  $user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $method, $donate_key, $donate_product, $prepaid)
     {
         SaleDetail::create([
             'sale_id' => $saleId,
+            'transaction_id' => $transactionId,
             'product' => $product_type,
             'product_type' => $customer_type, // loại key: cứng, mềm, chứng chỉ....
             'qty' => $amount, // số lượng
@@ -300,7 +315,7 @@ class AdminController extends Controller
 
     public function insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product)
     {
-        Transaction::create(
+        $transaction = Transaction::create(
             [
                 'user_request_id' => $user_request_id,
                 'customer_name' => $customer_name,
@@ -321,6 +336,8 @@ class AdminController extends Controller
                 'donate_product' => $donate_product
             ]
         );
+
+        return $transaction->id;
     }
 }
 

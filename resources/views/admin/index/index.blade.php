@@ -3,6 +3,40 @@
 @section('content')
 @include('admin.layouts.includes.breadcrumb')
 <div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="alert alert-success">
+					<h3>
+						{{number_format($keyActived)}}
+					</h3>
+					<a>
+						Key đã kích hoạt
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="alert alert-danger">
+					<h3>
+						{{number_format($keyNotActived)}}
+					</h3>
+					<a>
+						Key chưa kích hoạt
+					</a>
+				</div>
+				
+			</div>
+			<div class="col-lg-4">
+				<div class="alert alert-warning">
+					<h3>
+						{{number_format($customerCount)}}
+					</h3>
+					<a>
+						Khách hàng sử dụng (Dựa theo Email đăng ký)
+					</a>
+				</div>
+			</div>
+		</div>
+	<br>
     <div class="card card-custom">
         <div class="card-header py-3">
             <div class="card-title">
@@ -125,7 +159,6 @@
 								<tbody>
 					                @foreach($newKeys as $key)
 									<tr>
-
 					                    <td>
 											<p>
 					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
@@ -191,73 +224,73 @@
 								</thead>
 								<tbody>
 					                @foreach($keyDue as $key)
-									<tr>
+										<tr>
 
-					                    <td>
-					                    	<p>
-					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
-					                    	</p>
-											<p>
-												<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
-											</p>
-											<p>
-												<b>SĐT</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_phone }}</a>
-											</p>
-											<p>
-												<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
-											</p>
-										</td>
-					                    <td><span class="text-success-600">{{$key->product->name}}</span></td>
-					                    <td>
-											<span class="text-success-600">
-												@if($key->license->status == 1)
-													<span class="label label-lg label-light-primary label-inline">
-														Key thương mại
-													</span>
-												@elseif($key->license->status == 0)
-													<span class="label label-lg label-light-danger label-inline">
-														Key dùng thử
-													</span>
-												@elseif($key->license->status == 2)
-													<span class="label label-lg label-light-success label-inline">
-														Key lớp học
-													</span>
-												@endif
-											</span>
-											
-										</td>
-										<td>
-											{{date('d/m/Y', strtotime($key->license_expire_date))}}
-										</td>
-										<td>
-											<textarea data-id="{{$key->id}}" data-table="registered" class="form-control noteaction">{{$key->note}}</textarea>
-											<br>
-											<p>
-												@if($key->status_care == 0)
-													<button data-id="{{$key->id}}" data-status="0" type="button" class="btn btn-danger status-care">
-														Chưa chăm sóc
+											<td>
+												<p>
+													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
+												</p>
+												<p>
+													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
+												</p>
+												<p>
+													<b>SĐT</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_phone }}</a>
+												</p>
+												<p>
+													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
+												</p>
+											</td>
+											<td><span class="text-success-600">{{$key->product->name}}</span></td>
+											<td>
+												<span class="text-success-600">
+													@if($key->license->status == 1)
+														<span class="label label-lg label-light-primary label-inline">
+															Key thương mại
+														</span>
+													@elseif($key->license->status == 0)
+														<span class="label label-lg label-light-danger label-inline">
+															Key dùng thử
+														</span>
+													@elseif($key->license->status == 2)
+														<span class="label label-lg label-light-success label-inline">
+															Key lớp học
+														</span>
+													@endif
+												</span>
+												
+											</td>
+											<td>
+												{{date('d/m/Y', strtotime($key->license_expire_date))}}
+											</td>
+											<td>
+												<textarea data-id="{{$key->id}}" data-table="registered" class="form-control noteaction">{{$key->note}}</textarea>
+												<br>
+												<p>
+													@if($key->status_care == 0)
+														<button data-id="{{$key->id}}" data-status="0" type="button" class="btn btn-danger status-care">
+															Chưa chăm sóc
+														</button>
+													@else
+														<button data-id="{{$key->id}}" data-status="1" type="button" class="status-care btn btn-primary">
+															Đã chăm sóc
+														</button>
+													@endif
+												</p>
+											</td>
+											<td>
+												<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
+													<button class="btn btn-sm btn-danger" type="submit">
+														<i class="flaticon2-rubbish-bin-delete-button"></i>
 													</button>
-												@else
-													<button data-id="{{$key->id}}" data-status="1" type="button" class="status-care btn btn-primary">
-														Đã chăm sóc
-													</button>
-												@endif
-											</p>
-										</td>
-										<td>
-											<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
-												<button class="btn btn-sm btn-danger" type="submit">
-													<i class="flaticon2-rubbish-bin-delete-button"></i>
-												</button>
-											</a>
-										</td>
-									</tr>
+												</a>
+											</td>
+										</tr>
 									@endforeach
 								</tbody>
 							</table>
 							<div class="row">
 								<div class="col-lg-12">
-									{{$keyExpire->links()}}
+									{{$keyDue->links()}}
 								</div>
 							</div>
                         </div>
@@ -276,67 +309,67 @@
 								</thead>
 								<tbody>
 					                @foreach($keyExpire as $key)
-									<tr>
+										<tr>
 
-					                    <td>
-											<p>
-					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
-					                    	</p>
-											<p>
-												<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
-											</p>
-											<p>
-												<b>SĐT</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_phone }}</a>
-											</p>
-											<p>
-												<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
-											</p>
-										</td>
-					                    <td><span class="text-success-600">{{$key->product->name}}</span></td>
-					                    <td>
-											<span class="text-success-600">
-												@if($key->license->status == 1)
-													<span class="label label-lg label-light-primary label-inline">
-														Key thương mại
-													</span>
-												@elseif($key->license->status == 0)
-													<span class="label label-lg label-light-danger label-inline">
-														Key dùng thử
-													</span>
-												@elseif($key->license->status == 2)
-													<span class="label label-lg label-light-success label-inline">
-														Key lớp học
-													</span>
-												@endif
-											</span>
-											
-										</td>
-										<td>
-											{{date('d/m/Y', strtotime($key->license_expire_date))}}
-										</td>
-										<td>
-											<textarea data-id="{{$key->id}}" data-table="registered" class="form-control noteaction">{{$key->note}}</textarea>
-											<br>
-											<p>
-												@if($key->status_care == 0)
-													<button data-id="{{$key->id}}" data-status="0" type="button" class="btn btn-danger status-care">
-														Chưa chăm sóc
+											<td>
+												<p>
+													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
+												</p>
+												<p>
+													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
+												</p>
+												<p>
+													<b>SĐT</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_phone }}</a>
+												</p>
+												<p>
+													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
+												</p>
+											</td>
+											<td><span class="text-success-600">{{$key->product->name}}</span></td>
+											<td>
+												<span class="text-success-600">
+													@if($key->license->status == 1)
+														<span class="label label-lg label-light-primary label-inline">
+															Key thương mại
+														</span>
+													@elseif($key->license->status == 0)
+														<span class="label label-lg label-light-danger label-inline">
+															Key dùng thử
+														</span>
+													@elseif($key->license->status == 2)
+														<span class="label label-lg label-light-success label-inline">
+															Key lớp học
+														</span>
+													@endif
+												</span>
+												
+											</td>
+											<td>
+												{{date('d/m/Y', strtotime($key->license_expire_date))}}
+											</td>
+											<td>
+												<textarea data-id="{{$key->id}}" data-table="registered" class="form-control noteaction">{{$key->note}}</textarea>
+												<br>
+												<p>
+													@if($key->status_care == 0)
+														<button data-id="{{$key->id}}" data-status="0" type="button" class="btn btn-danger status-care">
+															Chưa chăm sóc
+														</button>
+													@else
+														<button data-id="{{$key->id}}" data-status="1" type="button" class="status-care btn btn-primary">
+															Đã chăm sóc
+														</button>
+													@endif
+												</p>
+											</td>
+											<td>
+												<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
+													<button class="btn btn-sm btn-danger" type="submit">
+														<i class="flaticon2-rubbish-bin-delete-button"></i>
 													</button>
-												@else
-													<button data-id="{{$key->id}}" data-status="1" type="button" class="status-care btn btn-primary">
-														Đã chăm sóc
-													</button>
-												@endif
-											</p>
-										</td>
-										<td>
-											<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
-												<button class="btn btn-sm btn-danger" type="submit">
-													<i class="flaticon2-rubbish-bin-delete-button"></i>
-												</button>
-											</a>
-										</td>
-									</tr>
+												</a>
+											</td>
+										</tr>
 									@endforeach
 								</tbody>
 							</table>

@@ -4,7 +4,7 @@ Route::get('logout', function(){
     auth()->logout();
 
     return redirect()->route('index');
-});
+})->name('logout');
 
 Route::get('test/export', 'ImportController@test');
 
