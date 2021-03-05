@@ -12,6 +12,7 @@
 		<!--begin::Form-->
 		<form class="form" method="post" action="{{route('admin.request.store')}}">
 			@csrf
+			<input type="hidden" name="customer_type" value="0">  <!-- /Loại Khóa mềm -->
 			<div class="card-body">
 				<div class="form-group row">
 					<div class="col-lg-4">
