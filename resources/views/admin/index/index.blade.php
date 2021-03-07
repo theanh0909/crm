@@ -191,6 +191,8 @@
 															Key lớp học
 														</span>
 													@endif
+												@else
+													{{$key->license_original}}
 												@endif
 											</span>
 										</td>
@@ -259,6 +261,8 @@
 																Key lớp học
 															</span>
 														@endif
+													@else
+														{{$key->license_original}}
 													@endif
 												</span>
 												
@@ -346,6 +350,8 @@
 																Key lớp học
 															</span>
 														@endif
+													@else
+														{{$key->license_original}}
 													@endif
 												</span>
 												
