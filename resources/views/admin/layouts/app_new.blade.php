@@ -1,4 +1,3 @@
-
 @include('admin.layouts.includes.menu_sidebar')
 <!--begin::Wrapper-->
 <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
@@ -783,8 +782,8 @@
 	<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 
 		<!--begin::Item-->
-		<li class="nav-item mb-2" data-toggle="tooltip" title="Cài đặt giao diện" data-placement="left">
-			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://preview.keenthemes.com/metronic/demo1/builder.html" target="_blank">
+		<li class="nav-item mb-2" data-toggle="tooltip" title="Thêm đơn hàng" data-placement="left">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="{{ route('admin.input') }}" target="_blank">
 				<i class="flaticon2-gear"></i>
 			</a>
 		</li>

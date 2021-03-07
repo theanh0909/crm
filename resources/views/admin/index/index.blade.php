@@ -177,18 +177,20 @@
 					                    <td><span class="text-success-600">{{$key->product->name}}</span></td>
 					                    <td>
 											<span class="text-success-600">
-												@if($key->license->status == 1)
-													<span class="label label-lg label-light-primary label-inline">
-														Key thương mại
-													</span>
-												@elseif($key->license->status == 0)
-													<span class="label label-lg label-light-danger label-inline">
-														Key dùng thử
-													</span>
-												@elseif($key->license->status == 2)
-													<span class="label label-lg label-light-success label-inline">
-														Key lớp học
-													</span>
+												@if(!empty($key->license))
+													@if($key->license->status == 1)
+														<span class="label label-lg label-light-primary label-inline">
+															Key thương mại
+														</span>
+													@elseif($key->license->status == 0)
+														<span class="label label-lg label-light-danger label-inline">
+															Key dùng thử
+														</span>
+													@elseif($key->license->status == 2)
+														<span class="label label-lg label-light-success label-inline">
+															Key lớp học
+														</span>
+													@endif
 												@endif
 											</span>
 										</td>
@@ -243,18 +245,20 @@
 											<td><span class="text-success-600">{{$key->product->name}}</span></td>
 											<td>
 												<span class="text-success-600">
-													@if($key->license->status == 1)
-														<span class="label label-lg label-light-primary label-inline">
-															Key thương mại
-														</span>
-													@elseif($key->license->status == 0)
-														<span class="label label-lg label-light-danger label-inline">
-															Key dùng thử
-														</span>
-													@elseif($key->license->status == 2)
-														<span class="label label-lg label-light-success label-inline">
-															Key lớp học
-														</span>
+													@if(!empty($key->license))
+														@if($key->license->status == 1)
+															<span class="label label-lg label-light-primary label-inline">
+																Key thương mại
+															</span>
+														@elseif($key->license->status == 0)
+															<span class="label label-lg label-light-danger label-inline">
+																Key dùng thử
+															</span>
+														@elseif($key->license->status == 2)
+															<span class="label label-lg label-light-success label-inline">
+																Key lớp học
+															</span>
+														@endif
 													@endif
 												</span>
 												
@@ -328,18 +332,20 @@
 											<td><span class="text-success-600">{{$key->product->name}}</span></td>
 											<td>
 												<span class="text-success-600">
-													@if($key->license->status == 1)
-														<span class="label label-lg label-light-primary label-inline">
-															Key thương mại
-														</span>
-													@elseif($key->license->status == 0)
-														<span class="label label-lg label-light-danger label-inline">
-															Key dùng thử
-														</span>
-													@elseif($key->license->status == 2)
-														<span class="label label-lg label-light-success label-inline">
-															Key lớp học
-														</span>
+													@if(!empty($key->license))
+														@if($key->license->status == 1)
+															<span class="label label-lg label-light-primary label-inline">
+																Key thương mại
+															</span>
+														@elseif($key->license->status == 0)
+															<span class="label label-lg label-light-danger label-inline">
+																Key dùng thử
+															</span>
+														@elseif($key->license->status == 2)
+															<span class="label label-lg label-light-success label-inline">
+																Key lớp học
+															</span>
+														@endif
 													@endif
 												</span>
 												

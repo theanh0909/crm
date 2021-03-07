@@ -25,6 +25,14 @@ Route::post('permission', 'PermissionsController@create')->name('permission.crea
 
 Route::resource('/product', 'ProductController'); // đã convert
 
+Route::group(['prefix' => 'docs', 'as' => 'docs.'], function(){
+    Route::get('core-values', 'DocController@core_values')->name('core-values');
+    Route::get('corporate-culture', 'DocController@corporate-culture')->name('corporate-culture');
+    Route::get('mission', 'DocController@mission')->name('mission');
+    Route::get('slogan', 'DocController@slogan')->name('slogan');
+    Route::get('vision', 'DocController@vision')->name('vision');
+});
+
 Route::get('input', 'AdminController@inputForm')->name('input'); // đã convert
 Route::get('input/edit/{id}', 'AdminController@inputEditForm')->name('input-edit-form'); // đã convert
 Route::post('input/edit/{id}', 'AdminController@inputEdit')->name('input-edit'); // đã convert
