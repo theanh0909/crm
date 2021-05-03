@@ -348,12 +348,12 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <p class="text-success"><b><a href="{{route('admin.customer.edit', ['id' => $item->id])}}">{{$item->customer_name}}</a></b></p>
-                                    <p>{{$item->customer_phone}} / <span class="text-secondary">{{$item->customer_email}}</span></p>
+                                    <p class="text-success"><b><a href="{{route('admin.customer.edit', ['id' => $item->id])}}">{{!empty($item->customer) ? $item->customer->name : ''}}</a></b></p>
+                                    <p>{{!empty($item->customer) ? $item->customer->phone : ''}} / <span class="text-secondary">{{!empty($item->customer) ? $item->customer->email : ''}}</span></p>
                                     @if(!empty($item->last_runing_date))
                                         HĐ cuối: {{\Carbon\Carbon::parse($item->last_runing_date)->format('d-m-Y')}}
                                     @endif
-                                    <p>Địa chỉ: {{$item->customer_address}}</p>
+                                    <p>Địa chỉ: {{!empty($item->customer) ? $item->customer->address : ''}}</p>
                                     <p>Địa phương: {{$item->customer_cty}}</p>
                                     <p>
                                         <button data-background="info" data-id="{{$item->id}}" class="status_action btn btn-sm

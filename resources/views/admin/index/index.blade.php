@@ -153,7 +153,7 @@
 										<th width="200px">Loại Key</th>
 										<th>Hết hạn</th>
 										<th>Ghi chú</th>
-										<th>Hoạt động</th>
+										<th>Hành động</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -161,7 +161,7 @@
 									<tr>
 					                    <td>
 											<p>
-					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
+					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
 					                    	</p>
 											<p>
 												<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
@@ -208,6 +208,7 @@
 													<i class="flaticon2-rubbish-bin-delete-button"></i>
 												</button>
 											</a>
+
 										</td>
 									</tr>
 									@endforeach
@@ -215,15 +216,25 @@
 							</table>
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_2_4" role="tabpanel" aria-labelledby="kt_tab_pane_2_4">
+							<form method="GET">
+								<div class="row">
+									<div class="form-group col-lg-3">
+										<input class="form-control" value="{{$day_due}}" name="day_due" type="number" placeholder="Nhập số ngày">
+									</div>
+									<div class="form-group col-lg-3">
+										<button class="btn btn-primary">Lọc</button>
+									</div>
+								</div>
+							</form>
                             <table class="table">
 								<thead>
 									<tr>
 										<th>Khách hàng</th>
 										<th>Phần mềm</th>
-										<th width="200px">Loại Key</th>
 										<th>Hết hạn</th>
 										<th>Ghi chú</th>
-										<th>Hoạt động</th>
+										<th>Gửi mail</th>
+										<th>Hành động</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -232,7 +243,7 @@
 
 											<td>
 												<p>
-													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
+													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
 												</p>
 												<p>
 													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
@@ -244,8 +255,8 @@
 													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 												</p>
 											</td>
-											<td><span class="text-success-600">{{$key->product->name}}</span></td>
 											<td>
+												<span class="text-success-600">{{$key->product->name}}</span><br>
 												<span class="text-success-600">
 													@if(!empty($key->license))
 														@if($key->license->status == 1)
@@ -265,7 +276,6 @@
 														{{$key->license_original}}
 													@endif
 												</span>
-												
 											</td>
 											<td>
 												{{date('d/m/Y', strtotime($key->license_expire_date))}}
@@ -286,9 +296,25 @@
 												</p>
 											</td>
 											<td>
+												@if($key->staus_email == 0)
+													<span class="label label-lg label-light-danger label-inline">
+														Chưa gửi
+													</span>
+												@else
+													<span class="label label-lg label-light-primary label-inline">
+														Đã gửi
+													</span>
+												@endif
+											</td>
+											<td>
 												<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
-													<button class="btn btn-sm btn-danger" type="submit">
+													<button class="btn btn-sm btn-danger" type="button" data-toggle="tooltip" data-theme="dark" title="Xóa">
 														<i class="flaticon2-rubbish-bin-delete-button"></i>
+													</button>
+												</a>
+												<a href="{{route('admin.email.form-send', ['email' => $key->customer_email])}}" target="_blank">
+													<button data-toggle="tooltip" data-theme="dark" title="Gửi mail thông báo" class="btn btn-sm btn-primary" type="button">
+														<i class="flaticon2-send-1"></i>
 													</button>
 												</a>
 											</td>
@@ -304,6 +330,16 @@
                         </div>
                         
                         <div class="tab-pane fade" id="kt_tab_pane_2_5" role="tabpanel" aria-labelledby="kt_tab_pane_2_5">
+							<form method="GET">
+								<div class="row">
+									<div class="form-group col-lg-3">
+										<input class="form-control" value="{{$day_expire}}" name="day_expire" type="number" placeholder="Nhập số ngày">
+									</div>
+									<div class="form-group col-lg-3">
+										<button class="btn btn-primary">Lọc</button>
+									</div>
+								</div>
+							</form>
                             <table class="table">
 								<thead>
 									<tr>
@@ -316,12 +352,13 @@
 									</tr>
 								</thead>
 								<tbody>
+									{{dd($keyExpire)}}
 					                @foreach($keyExpire as $key)
 										<tr>
 
 											<td>
 												<p>
-													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{$key->customer_name}}</a>
+													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
 												</p>
 												<p>
 													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>

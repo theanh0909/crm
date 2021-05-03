@@ -11,6 +11,7 @@ use App\Models\Registered;
 use App\User;
 use App\TransactionWait;
 use App\Models\Transaction;
+use App\Models\Customer;
 use App\Exports\ExportExam;
 use App\Exports\ExportSheet1;
 use App\Repositories\CustomerRepositoryInterface;
@@ -267,37 +268,43 @@ class CertificateController extends Controller
         try {
             DB::beginTransaction();
             $item = TransactionWait::where('id', $id)->first();
+            $customer = Customer::updateOrCreate(
+                [
+                    'email' => $item->customer_email
+                ],[
+                    'name' => $item->customer_name,
+                    'phone' => $item->customer_phone,
+                    'address' => $item->customer_address,
+                    'birthday' => $item->customer_birthday,
+                    'company' => $item->company,
+                    'school' => $item->school,
+                    'nation' => $item->nation,
+                    'id_card' => $item->id_card,
+                    'date_card' => $item->date_card,
+                    'qualification' => $item->qualification,
+                    'address_card' => $item->address_card,
+                    'city' => $item->customer_city,
+                    'edu_system' => $item->edu_system,
+                    'exper_num' => $item->exper_num
+                ]
+            );
             Transaction::updateOrcreate(
                 [
                     'name_upload' => $item->slug,
                     'product_type' => $item->product_type,
-                    'id_card' => $item->id_card,
-                    'customer_phone' => $item->customer_phone,
-                    'customer_email' => $item->customer_email,
+                    'customer_id' => $customer->id
                 ],
                 [
-                    'customer_name' => $item->customer_name,
                     'user_request_id' => $item->user_id,
-                    'customer_address' => $item->customer_address,
-                    'customer_cty' => $item->customer_city,
                     'status' => 0,
                     'customer_type' => 3,
                     'price' => $item->price,
                     'discount' => $item->discount,
                     'retest' => $item->retest,
-                    'customer_birthday' => $item->customer_birthday,
                     'customer_account' => $item->customer_account,
-                    'date_card' => $item->date_card,
-                    'address_card' => $item->address_card,
-                    'qualification' => $item->qualification,
                     'decree' => $item->decree,
                     'type_exam' => $item->type_exam,
                     'class' => $item->class,
-                    'exper_num' => $item->exper_num,
-                    'company' => $item->company,
-                    'nation' => $item->nation,
-                    'edu_system' => $item->edu_system,
-                    'school' => $item->school,
                     'collaborator' => $item->collaborator,
                     'note' => $item->note,
                 ]
@@ -342,37 +349,43 @@ class CertificateController extends Controller
             $transactionWait = TransactionWait::where('slug', $name)->get();
 
             foreach ($transactionWait as $item) {
+                $customer = Customer::updateOrCreate(
+                    [
+                        'email' => $item->customer_email
+                    ],[
+                        'name' => $item->customer_name,
+                        'phone' => $item->customer_phone,
+                        'address' => $item->customer_address,
+                        'birthday' => $item->customer_birthday,
+                        'company' => $item->company,
+                        'school' => $item->school,
+                        'nation' => $item->nation,
+                        'id_card' => $item->id_card,
+                        'date_card' => $item->date_card,
+                        'qualification' => $item->qualification,
+                        'address_card' => $item->address_card,
+                        'city' => $item->customer_city,
+                        'exper_num' => $item->exper_num,
+                        'edu_system' => $item->edu_system
+                    ]
+                );
                 Transaction::updateOrCreate(
                     [
                         'product_type' => $item->product_type,
                         'name_upload' => $item->slug,
-                        'id_card' => $item->id_card,
-                        'customer_phone' => $item->customer_phone,
-                        'customer_email' => $item->customer_email,
+                        'customer_id' => $customer->id
                     ],
                     [
                         'user_request_id' => $item->user_id,
-                        'customer_name' => $item->customer_name,
-                        'customer_address' => $item->customer_address,
-                        'customer_cty' => $item->customer_city,
                         'status' => 0,
                         'customer_type' => 3,
                         'price' => $item->price,
                         'discount' => $item->discount,
                         'retest' => $item->retest,
-                        'customer_birthday' => $item->customer_birthday,
                         'customer_account' => $item->customer_account,
-                        'date_card' => $item->date_card,
-                        'address_card' => $item->address_card,
-                        'qualification' => $item->qualification,
                         'decree' => $item->decree,
                         'type_exam' => $item->type_exam,
                         'class' => $item->class,
-                        'exper_num' => $item->exper_num,
-                        'company' => $item->company,
-                        'nation' => $item->nation,
-                        'edu_system' => $item->edu_system,
-                        'school' => $item->school,
                         'collaborator' => $item->collaborator,
                         'note' => $item->note
                     ]
