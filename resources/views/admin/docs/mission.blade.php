@@ -18,12 +18,15 @@
                         </svg>
                     </span>
                 </span>
-                <h3 class="card-label">Mission</h3>
+                <h3 class="card-label">Mission - Sứ mệnh</h3>
             </div>
         </div>
         <div class="card-header" style="padding-top: 10px">
             {{-- Viết nội dung ở đây --}}
-            <p>Sứ mệnh</p>  
+            <p>Đào tạo nhân lực cho ngành xây dựng chất lượng cao.</p>
+            <p>Đưa ngành xây dựng Việt Nam, các phần mềm xây dựng vượt lên tầm thế giới.</p>
+            <p>Giữ USD chi tiêu cho công nghệ xây dựng ở lại Việt Nam.</p>
+            <p>Giúp nhiều các kỹ sư khởi nghiệp, đưa ra nhiều giải pháp giúp cải biến ngành xây dựng, phát triển kinh tế, xây dựng đất nước.</p>
         </div>
     </div>
 </div>

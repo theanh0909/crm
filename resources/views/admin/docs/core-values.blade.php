@@ -18,12 +18,15 @@
                         </svg>
                     </span>
                 </span>
-                <h3 class="card-label">Core Values</h3>
+                <h3 class="card-label">Core Values - Giá trị cốt lõi</h3>
             </div>
         </div>
         <div class="card-header" style="padding-top: 10px">
             {{-- Viết nội dung ở đây --}}
-            <p>Giá trị cốt lõi</p>  
+            <p>Xây dựng hệ sinh thái các phần mềm GXD + các giải pháp công nghệ GXD làm nền tảng vững chắc.</p>
+            <p>Không ngừng học hỏi, không ngừng cải tiến, không ngừng tiến bộ, không ngừng tốt hơn.</p>
+            <p>Mọi thứ đều thay đổi theo thời gian. Chỉ có “THAY ĐỔI TỐT HƠN MỖi NGÀY” là điều không bao giờ thay đổi.</p>
+            <p>Bạn có thể thành công rực rỡ khi bạn thích giải quyết vấn đề và không thích tìm các lý do. Thành công của bạn chắc chắn sẽ đến khi số vấn đề được giải quyết nhiều hơn các lý do được đưa ra.</p>
         </div>
     </div>
 </div>

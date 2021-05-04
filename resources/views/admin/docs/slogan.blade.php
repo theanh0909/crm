@@ -23,27 +23,13 @@
         </div>
         <div class="card-header" style="padding-top: 10px">
             {{-- Viết nội dung ở đây --}}
-            <p>
-                Nhóm 1: Khách hàng mục tiêu (những người mong muốn mua hàng, những người có nhu cầu mà chúng ta nhắm tới)
-                </p>
-                <p>
-                Nhóm 2: Khách hàng tiềm năng (đã cho chúng ta một mẩu thông tin nào đó, có thể là email, có thể là điện thoại)
-                </p>
-                <p>
-                Nhóm 3: Mua hàng (ít nhất 1 lần mua hàng), khách hàng này sự trung thành chưa cao, sẵn sàng từ bỏ để mua hàng từ nơi khác
-                </p>
-                <p>
-                Nhóm 4: Khách hàng (ít nhất mua hàng 2 lần trở lên)
-                </p>
-                <p>
-                Nhóm 5: Thành viên (đã mua đi mua lại nhiều lần, được hưởng ưu đãi, có thẻ thành viên, ưu đãi, VIP, được đón tiếp nồng hậu hơn) hãy tập trung chăm sóc nhóm này, tập trung thật nhiều vào xây dựng nhóm thành viên này.
-                </p>
-                <p>
-                Nhóm 6: Những người ủng hộ (những người mua hàng vô cùng nhiều, mỗi khi có ai đó hỏi về món hàng liên quan thì bạn sẽ là người đầu tiên xuất hiện trong tâm trí của họ), nhóm này luôn muốn bạn phát triển kinh doanh, họ sẵn sàng giới thiệu bạn với bạn bè, họ hàng, khách hàng của họ
-                </p>
-                <p>
-                Nhóm 7: Khách hàng cuồng nhiệt (Raving fan): (bạn có thể như 1 ca sỹ, cầu thủ ủng hộ - sẵn sàng bán hàng cho bạn vì bất kì điều kiện nào, chỉ bởi vì thích), nếu xây dựng nhóm này tốt, kinh doanh sẽ ở tầm cao mới.
-                </p>  
+            <p>Slogan mới: TỐC ĐỘ, TRÍ TUỆ, SÁNG TẠO, ĐỒNG THUẬN, THÀNH CÔNG</p><br>
+            <p>Slogan gốc: Phần mềm - Đào tạo - Tư vấn</p><br>
+            <p>Slogan Dự toán GXD 10: Dùng là thích, kích là sướng!</p><br>
+            <p>Slogan Dự thầu GXD: Dùng là thắng thầu! Thắng nhiều lãi lớn!</p><br>           
+            <p>Slogan Quản lý dự án GXD: Quản lý dự án trên 1 ngón tay!</p><br>
+            <p>Slogan Phần mềm Quản lý chất lượng GXD: Đời công trường nhẹ nhàng mà vui!</p><br>
+            <p>Slogan Phần mềm Quyết toán GXD: Tiền về liền tay!</p>
         </div>
     </div>
 </div>

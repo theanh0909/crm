@@ -18,12 +18,17 @@
                         </svg>
                     </span>
                 </span>
-                <h3 class="card-label">Corporate Culture</h3>
+                <h3 class="card-label">Corporate Culture - Văn hóa doanh nghiệp</h3>
             </div>
         </div>
         <div class="card-header" style="padding-top: 10px">
             {{-- Viết nội dung ở đây --}}
-            <p>Văn hóa doanh nghiệp</p>  
+            <p>Môi trường tri thức cao, mọi người cư xử với nhau nhẹ nhàng, cao thượng xứng với tầm tri thức.</p>
+            <p>Trung thực, các thành viên bình đẳng, tôn trọng lẫn nhau. Mỗi người ý thức rằng: anh/em ruột ở xa nhau có khi lâu lâu mới thăm được nhau. Nhưng các đồng nghiệp trong công ty thì ngày nào cũng cùng nhau hơn 8h đồng hồ, còn quý hơn cả anh/em ruột thịt.</p>
+            <p>Hãy nhường nhịn nhau, "chuyền bóng để tạo điều kiện cho nhau ghi bàn", tạo điều kiện cho nhau cùng tỏa sáng. </p>
+            <p>Mình mệt hơn 1 chút, nhưng điều đó làm cho các đồng đội đỡ nhiều "xương máu" thì phải cố gắng.</p>
+            <p>Lấy chế độ chính sách của Nhà nước, lấy quy định của pháp luật làm chuẩn. Chúng ta phải thực hiện tốt hơn, lớn hơn hoặc bằng chế độ, chính sách của Nhà nước, pháp luật chỉ là min, mình phải tốt nhiều hơn thế.</p>
+
         </div>
     </div>
 </div>

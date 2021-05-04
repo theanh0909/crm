@@ -12,7 +12,7 @@
             <a href="{{route('admin.docs.slogan')}}" target="_blank" class="nav-link pl-0 pr-5">Slogan</a>
             <a href="{{route('admin.docs.core-values')}}" target="_blank" class="nav-link pl-0 pr-5">Giá trị cốt lõi</a>
             <a href="{{route('admin.docs.vision')}}" target="_blank" class="nav-link pl-0 pr-5">Tầm nhìn</a>
-            <a href="{{route('admin.docs.mission')}}" target="_blank" class="nav-link pl-0 pr-0">Sứ mệnh</a>
+            <a href="{{route('admin.docs.mission')}}" target="_blank" class="nav-link pl-0 pr-5">Sứ mệnh</a>
             <a href="{{route('admin.docs.corporate-culture')}}" target="_blank" class="nav-link pl-0 pr-5">Văn hóa doanh nghiệp</a>
         </div>
         <!--end::Nav-->

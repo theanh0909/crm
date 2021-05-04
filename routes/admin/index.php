@@ -27,7 +27,7 @@ Route::resource('/product', 'ProductController'); // đã convert
 
 Route::group(['prefix' => 'docs', 'as' => 'docs.'], function(){
     Route::get('core-values', 'DocController@core_values')->name('core-values');
-    Route::get('corporate-culture', 'DocController@corporate-culture')->name('corporate-culture');
+    Route::get('corporate-culture', 'DocController@corporate_culture')->name('corporate-culture');
     Route::get('mission', 'DocController@mission')->name('mission');
     Route::get('slogan', 'DocController@slogan')->name('slogan');
     Route::get('vision', 'DocController@vision')->name('vision');

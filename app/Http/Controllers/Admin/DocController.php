@@ -17,7 +17,7 @@ class DocController extends Controller
         return view('admin.docs.vision');
     }
 
-    public function mision()
+    public function mission()
     {
         return view('admin.docs.mission');
     }
