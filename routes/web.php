@@ -46,3 +46,7 @@ Route::get('/test', 'TestController@index')->name('test');
 Route::any('/captcha.php', 'HomeController@createCaptcha');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::group(['prefix' => 'cronjob'], function(){
+    Route::get('/send-mail-auto', 'Client\ClientController@autoSendMail');
+});

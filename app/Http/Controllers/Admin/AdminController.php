@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\SaleDetail;
+use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Sale;
@@ -27,7 +28,14 @@ class AdminController extends Controller
 
     }
 
-    public function index()
+    public function searchEmail(Request $request)
+    {
+        $customer = Customer::where('email', 'like', $request->email . '%')->select('email', 'name', 'phone', 'address')->limit(10)->get();
+
+        return response()->json(['data' => $customer]);
+    }
+
+    public function index(Request $request)
     {
         $keyActived         = License::where('status_register', License::KEY_ACTIVE)->count();
         $keyNotActived      = License::where('status_register', License::KEY_NOT_ACTIVE)->count();
@@ -44,11 +52,12 @@ class AdminController extends Controller
         if(!can('customer-view')) {
             $filters['user_support_id'] = auth()->user()->id;
         }
-
+        $day_due = empty($request->day_due) ? 15 : $request->day_due;
+        $day_expire = empty($request->day_expire) ? 15 : $request->day_expire;
         $newKeys        = $this->customerRepository->allByFilter($filters, 'id', 'DESC');
         $dateNow = date('Y-m-d');
-        $dateDue = date('Y-m-d', strtotime($dateNow. ' + 15 days'));
-        $dateExpire = date('Y-m-d', strtotime($dateNow . ' - 15 days'));
+        $dateDue = date('Y-m-d', strtotime($dateNow. " + $day_due days"));
+        $dateExpire = date('Y-m-d', strtotime($dateNow . " - $day_expire days"));
     /**
      * Nếu là admin thì lấy tất cả
      * Ngược lại thì nhân viên của ai người đó chăm sóc
@@ -68,7 +77,7 @@ class AdminController extends Controller
         }
 
         return view('admin.index.index', compact(
-            'keyActived', 'keyNotActived', 'customerCount', 'newKeys', 'keyDue', 'keyExpire'
+            'keyActived', 'keyNotActived', 'customerCount', 'newKeys', 'keyDue', 'keyExpire', 'day_due', 'day_expire'
         ));
     }
 
@@ -315,14 +324,20 @@ class AdminController extends Controller
 
     public function insertTransaction($user_request_id, $customer_name, $customer_phone, $customer_email, $customer_address, $customer_cty, $product_type, $note, $number_day, $amount, $type, $customer_type, $price, $discount, $option, $donation_key, $donate_product)
     {
+        $customer = Customer::updateOrCreate(
+            [
+                'email' => $customer_email
+            ],[
+                'name' => $customer_name,
+                'phone' => $customer_phone,
+                'address' => $customer_address,
+                'city' => $customer_cty,
+            ]
+        );
         $transaction = Transaction::create(
             [
+                'customer_id' => $customer->id,
                 'user_request_id' => $user_request_id,
-                'customer_name' => $customer_name,
-                'customer_phone' => $customer_phone,
-                'customer_email' => $customer_email,
-                'customer_address' => $customer_address,
-                'customer_cty' => $customer_cty,
                 'product_type' => $product_type,
                 'note' => $note,
                 'number_day' => $number_day,

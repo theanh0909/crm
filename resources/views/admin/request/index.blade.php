@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($datas as $item)
+                    @foreach($datas as $key => $item)
                         <?php
                             $keyType = ($item->type == 0) ? 'Key thử nghiệm': 'Key thương mại';
                             if($item->product->type == 0)
@@ -47,7 +47,9 @@
                         ?>
                         <tr scope="row" id="rqrow-{{$item->id}}">
                         <!-- Đánh STT tự động -->
-                            <td scope="row">{{$loop->index + 1}}</td>
+                            <td scope="row">
+                                {{ ($datas->currentpage()-1) * $datas->perpage() + $key + 1 }}
+                            </td>
                             <td scope="row">
                                 <p>Sản phẩm: {{$item->product->name}}</p>
                                 @if($item->customer_type == 0)
@@ -79,9 +81,9 @@
                             </td>
 
                             <td>
-                                <p><i style="margin-right: 5px" class="flaticon2-user"></i>{{$item->customer_name}}</p>
-                                <p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i>{{$item->customer_email}}</p>
-                                <p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{$item->customer_phone}}</p>
+                                <p><i style="margin-right: 5px" class="flaticon2-user"></i>{{!empty($item->customer) ? $item->customer->name : ''}}</p>
+                                <p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i>{{!empty($item->customer) ? $item->customer->email : ''}}</p>
+                                <p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{!empty($item->customer) ? $item->customer->phone : ''}}</p>
                             </td>
                             <td scope="row">
                                 <span class="label label-xl label-info label-inline mr-2">

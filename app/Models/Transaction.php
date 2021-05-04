@@ -20,6 +20,7 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
+        'customer_id',
         'user_request_id',
         'user_approve_id',
         'customer_name',
@@ -67,6 +68,11 @@ class Transaction extends Model
         'status_certificate',
         'status_salary'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 
     public function user() {
         return $this->belongsTo(User::class, 'user_request_id', 'id');

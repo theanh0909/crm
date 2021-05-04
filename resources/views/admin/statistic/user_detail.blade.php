@@ -126,10 +126,9 @@
 						</td>
 						@endif
 						<td>
-							<p><i style="margin-right: 5px" class="flaticon2-user"></i>{{$item->customer_name}}</p>
-							<p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i>{{$item->customer_email}}</p>
-							<p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{$item->customer_phone}}</p>
-
+							<p><i style="margin-right: 5px" class="flaticon2-user"></i>{{!empty($item->customer) ? $item->customer->name : $item->customer_name}}</p>
+							<p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i>{{!empty($item->customer) ? $item->customer->email : $item->customer_email}}</p>
+							<p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{!empty($item->customer) ? $item->customer->phone : $item->customer_phone}}</p>
 						</td>                     
 						<td>                                
 							<p>

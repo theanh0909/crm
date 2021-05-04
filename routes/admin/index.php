@@ -1,5 +1,4 @@
 <?php
-
 Route::get('logout', function(){
     auth()->logout();
 
@@ -34,6 +33,7 @@ Route::group(['prefix' => 'docs', 'as' => 'docs.'], function(){
 });
 
 Route::get('input', 'AdminController@inputForm')->name('input'); // đã convert
+Route::post('search-email', 'AdminController@searchEmail')->name('search-email');
 Route::get('input/edit/{id}', 'AdminController@inputEditForm')->name('input-edit-form'); // đã convert
 Route::post('input/edit/{id}', 'AdminController@inputEdit')->name('input-edit'); // đã convert
 
@@ -195,7 +195,7 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function() {
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('password/reset-password', 'UsersController@resetPassword')->name('reset-password'); // đã convert
     Route::post('password/reset-password', 'UsersController@updatePassword')->name('update-password'); // đã convert
-
+    Route::get('profile/{customerId}', 'UsersController@profile')->name('profile');
     Route::get('profile/edit', 'UsersController@editProfile')->name('edit-profile'); // đã convert
     Route::post('profile/edit', 'UsersController@updateProfile')->name('update-profile'); // đã convert
 
@@ -207,6 +207,11 @@ Route::group(['prefix' => 'email', 'as' => 'email.'], function () {
     Route::get('/', 'EmailController@index')->name('index'); // đã convert
     Route::get('/{product_id}/edit', 'EmailController@edit')->name('edit'); // đã convert
     Route::post('/{product_id}/update', 'EmailController@update')->name('update'); // đã convert
+    Route::get('/create', 'EmailController@formCreate')->name('form-create');
+    Route::post('/create', 'EmailController@create')->name('create');
+    Route::get('/send', 'EmailController@formSend')->name('form-send');
+    Route::post('/send', 'EmailController@send')->name('send');
+    Route::get('/search-customer', 'EmailController@customer')->name('customer');
 });
 
 Route::group(['prefix' => 'mailcontent', 'as' => 'mailcontent.'], function () {
@@ -266,5 +271,8 @@ Route::group(['prefix' => 'backup', 'as' => 'backup.', 'middleware' => ['pms:bac
     Route::get('/delete/{filename}', 'BackupController@destroy')->name('destroy'); // đã convert
 });
 
-
+Route::group(['prefix' => 'tool'], function(){
+    Route::get('/convert', 'ToolController@convertCustomer');
+    Route::get('/convert-registered-table', 'ToolController@convertCustomerFromRegistered');
+});
 //die('xxx');

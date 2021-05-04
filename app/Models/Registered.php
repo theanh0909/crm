@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 
 class Registered extends Model
@@ -62,6 +63,11 @@ class Registered extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'user_support_id', 'id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_email', 'email');
     }
 
     public function transaction()
