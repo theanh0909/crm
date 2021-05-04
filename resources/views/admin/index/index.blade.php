@@ -243,7 +243,7 @@
 
 											<td>
 												<p>
-													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
+													<b>Tên</b>: <a class="text-success-600" href="@if(!empty($key->customer)){{route('admin.user.profile', ['id' => $key->customer->id])}}@else{{'#'}}@endif">{{$key->customer_name}}</a>
 												</p>
 												<p>
 													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
@@ -352,13 +352,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									{{dd($keyExpire)}}
 					                @foreach($keyExpire as $key)
 										<tr>
-
 											<td>
 												<p>
-													<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
+													<b>Tên</b>: <a class="text-success-600" href="@if(!empty($key->customer)){{route('admin.user.profile', ['id' => $key->customer->id])}}@else{{'#'}} @endif">{{$key->customer_name}}</a>
 												</p>
 												<p>
 													<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>

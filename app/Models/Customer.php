@@ -30,4 +30,9 @@ class Customer extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function registered()
+    {
+        return $this->hasMany(Registered::class, 'customer_email', 'email');
+    }
 }

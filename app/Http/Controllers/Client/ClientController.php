@@ -104,6 +104,5 @@ class ClientController extends Controller
                     ->setBody($body, 'text/html');
             });
         }
-        
     }
 }
