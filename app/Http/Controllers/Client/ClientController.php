@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TransactionWait;
+use App\Models\Registered;
+use App\Models\CronjobMail;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -66,5 +69,40 @@ class ClientController extends Controller
     
             return back()->withInput()->with('success', 'Gửi thông tin thành công');
         
+    }
+
+    public function autoSendMail(Request $request)
+    {
+        $type = $request->type;
+        $day = $request->day;
+        $dateNow = date('Y-m-d');
+        $mailModel = CronjobMail::where('type', $type)->first();
+
+        if ($type == 'expire') {
+            $dateExpire = date('Y-m-d', strtotime($dateNow . " - $day days"));
+            $between = [$dateExpire, $dateNow];
+        } else if ($type == 'due') {
+            $dateDue = date('Y-m-d', strtotime($dateNow. " + $day days"));
+            $between = [$dateNow, $dateDue];
+        }
+        $customers = Registered::whereBetween('license_expire_date', $between)
+                                ->where('status_mail', 0) // những email chưa gửi
+                                ->select('status_mail', 'license_expire_date', 'customer_email', 'product_type', 'customer_name')
+                                ->get();
+
+        foreach ($customers as $customer) {
+            $name = $customer->customer_name;
+            $customerEmail = $customer->customer_email;
+            $product = $customer->product->name;
+            Mail::send([], [], function($message) use ($mailModel, $name, $customerEmail, $product) {
+                $subject = str_replace("[name]", $name, $mailModel->email->subject);
+                $subject = str_replace("[product]", $product, $subject);
+                $body    = str_replace("[name]", $name, $mailModel->email->content);
+                $body    = str_replace("[product]",  $product, $body);
+                $message->to($customerEmail)
+                    ->subject($subject)
+                    ->setBody($body, 'text/html');
+            });
+        }
     }
 }

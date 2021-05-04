@@ -53,6 +53,7 @@ class ImportController extends Controller
             $errors = [];
             $validator = new ValidateImport;
             Excel::import($validator, $request->file('file'));
+            
             if (count($validator->errors)) {
                 foreach ($validator->errors as $key => $error) {
                     foreach ($error->messages() as $errorItem) {

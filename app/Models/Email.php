@@ -14,6 +14,11 @@ class Email extends Model
      * @var array
      */
     protected $fillable = [
-        'product_type', 'subject', 'content', 'subject_trial', 'content_trial'
+        'product_type', 'subject', 'content', 'subject_trial', 'content_trial', 'name'
     ];
+
+    public function cronjobEmail()
+    {
+        return $this->hasMany(CronjobMail::class, 'email_id', 'id');
+    }
 }

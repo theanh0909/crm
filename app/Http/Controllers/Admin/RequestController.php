@@ -9,6 +9,7 @@ use App\Models\License;
 use App\Models\Product;
 use App\Models\Registered;
 use App\Models\Transaction;
+use App\Models\Customer;
 use App\Permission;
 use App\Role;
 use App\Services\Production\MailService;
@@ -119,7 +120,16 @@ class RequestController extends Controller
 
             $inputs['status'] = Transaction::STATUS_APPROVE;
         }
-
+        $customer = Customer::updateOrCreate(
+            [
+                "email" => $inputs['customer_email'],
+                
+            ],[
+                "name" => $inputs['customer_name'],
+                "phone" => $inputs['customer_phone'],
+            ]
+        );
+        $inputs['customer_id'] = $customer->id;
         Transaction::create($inputs);
 
         return redirect()->route('admin.request.myRequest');

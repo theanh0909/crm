@@ -119,6 +119,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="row">
+                {{$transactions->links()}}              
+            </div> 
         </div>
     </div>
     <br>

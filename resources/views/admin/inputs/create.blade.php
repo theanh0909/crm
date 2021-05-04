@@ -14,24 +14,28 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row">
+                    <div class="col-lg-4" style="position: relative">
+                        <label class="col-form-label" onclick="emailItem(nguyen trong chinh,'theanh@gxd.vn','bn')">Email (nhập đúng email)<i class="fa fa-asterisk color-red font-size-2"></i></label>
+                        {{Form::text('customer_email', '', ['class' => 'input-mail form-control', 'required' => 'required'])}}
+                        <div id="search">
+                            
+                        </div>
+                        
+                    </div>
                     <div class="col-lg-4">
                         <label class="col-form-label">Họ tên <i class="fa fa-asterisk color-red font-size-2"></i></label>
-                        {{Form::text('customer_name', '', ['class' => 'form-control'])}}
+                        {{Form::text('customer_name', '', ['class' => 'input-name form-control'])}}
                     </div>
                     <div class="col-lg-4">
                         <label class="col-form-label">Số điện thoại (nhập đúng số) <i class="fa fa-asterisk color-red font-size-2"></i></label>
-                        {{Form::text('customer_phone', '', ['class' => 'form-control', 'required' => 'required'])}}
-                    </div>
-                    <div class="col-lg-4">
-                        <label class="col-form-label">Email (nhập đúng email)<i class="fa fa-asterisk color-red font-size-2"></i></label>
-                        {{Form::text('customer_email', '', ['class' => 'form-control', 'required' => 'required'])}}
+                        {{Form::text('customer_phone', '', ['class' => 'input-phone form-control', 'required' => 'required'])}}
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <div class="col-lg-4">
                         <label class="col-form-label">Địa chỉ</label>
-                        {{Form::text('customer_address', '', ['class' => 'form-control'])}}
+                        {{Form::text('customer_address', '', ['class' => 'input-address form-control'])}}
                     </div>
                     <div class="col-lg-4">
                         <label class="col-form-label">Tỉnh thành (chọn hoặc gõ từ khóa)</label>
@@ -128,6 +132,29 @@
     </div>
     <!--end::Card-->
 </div>
+<style>
+    #search{
+        position: absolute;
+        width: 100%;
+        left: 0px;
+        padding: 0px 15px;
+        z-index: 4444;
+        height: auto;
+        display: none;
+        padding: 0px 15px;
+    }
+    #search div{
+        padding: 10px;
+        box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+        background: #fff;
+        border-radius: 0px 0px 4px 4px;
+    }
+    #search div p{
+        cursor: pointer;
+        margin-bottom: 0px;
+        padding: 8px 0px;
+    }
+</style>
 @endsection
 
 @section('script')
@@ -150,6 +177,39 @@
             var element = $(this).find('option:selected');
             $('input[name=price]').val(element.attr('price'));
         });
+        $('.input-mail').keyup(debounce(function(e){
+            var me = $(this);
+            var dataPost = {
+                email: me.val(),
+                _token: "{{csrf_token()}}"
+            };
+            $.ajax({
+                url: "{{route('admin.search-email')}}",
+                method: 'POST',
+                data: dataPost,
+                success: function(e) {
+                    var string = '';
+                    for(var i = 0; i < e.data.length; i++) {
+                        var name = e.data[i].name;
+                        var email = e.data[i].email;
+                        var address = e.data[i].address;
+                        var phone = e.data[i].phone;
+                        string+= '<p onclick="emailItem(' + "'" + phone + "'," + "'" +  name + "'" + ',' + "'" + email + "'" + ',' + "'" + address + "'" + ')">' + e.data[i].email + '</p>';
+                    }
+                    if (string != '') {
+                        $('#search').show();
+                        $('#search').html('<div>' + string + '</div>');
+                    }
+                }
+            })
+        },100));
+        function emailItem(phone, name, email, address) {
+            $('.input-phone').val(phone);
+            $('.input-name').val(name);
+            $('.input-mail').val(email);
+            $('.input-address').val(address);
+            $('#search').hide();
+        }
 
         function getMoney() {
             var price       = $('input[name=price]').val();

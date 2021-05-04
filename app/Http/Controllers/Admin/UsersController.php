@@ -20,6 +20,8 @@ use App\Repositories\RoleRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
+use App\Models\Transaction;
+use App\Models\Customer;
 
 class UsersController extends Controller
 {
@@ -54,6 +56,17 @@ class UsersController extends Controller
         $this->permissionGroupRepository = $permissionGroupRepository;
         $this->userRoleRepository       = $userRoleRepository;
         $this->permissionUserRepository = $permissionUserRepository;
+    }
+
+    public function profile($customerId)
+    {
+        $productUsed = Transaction::where('customer_id', $customerId)
+                                  ->where('status', Transaction::STATUS_APPROVE)
+                                  ->latest('id')
+                                  ->paginate(20);
+        $customer = Customer::find($customerId);
+
+        return view('admin.customer.profile', compact('productUsed', 'customer'));
     }
 
     public function index(Request $request)

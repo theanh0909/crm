@@ -583,7 +583,14 @@
 										<div class="menu-submenu">
 											<i class="menu-arrow"></i>
 											<ul class="menu-subnav">
-												
+												<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+													<a href="{{route('admin.email.form-create')}}" class="menu-link menu-toggle">
+														<i class="menu-bullet menu-bullet-dot">
+															<span></span>
+														</i>
+														<span class="menu-text">Soạn mẫu mail</span>
+													</a>
+												</li>
 												<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 													<a href="{{route('admin.email.index')}}" class="menu-link menu-toggle">
 														<i class="menu-bullet menu-bullet-dot">

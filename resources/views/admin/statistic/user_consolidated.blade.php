@@ -100,7 +100,8 @@
                                     {{$key+1}}
                                 </td>
                                 <td style="width: 6%">
-                                    {{$item->customer_name}}
+                                    
+                                    {{!empty($item->customer) ? $item->customer->name : $item->customer_name}}
                                 </td>
                                 <td>
                                     <p>Tên SP: {{$item->product->name}}</p>

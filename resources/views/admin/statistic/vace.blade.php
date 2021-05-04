@@ -91,7 +91,7 @@
                         <tr>
                             <td>{{$key + 1}}</td>
                             <td>
-                                {{$transactionItem->customer_name}}
+                                {{!empty($item->customer) ? $item->customer->name : $transactionItem->customer_name}}
                             </td>
                             <td>
                                 <p>

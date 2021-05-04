@@ -29,7 +29,7 @@
                     {{ $item->id }}
                 </td>
                 <td>
-                    {{ $item->customer_name }}
+                    {{ !empty($item->customer) ? $item->customer->name : $item->customer_name }}
                 </td>
                 <td>
                     {{ $item->product->name }}
