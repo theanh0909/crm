@@ -57,68 +57,7 @@
             </div>
         </div>
         @include('admin.layouts.partitals.notify')
-        {{-- <div class="row">
-			<div class="col-lg-4">
-				<div class="card bg-teal-400">
-					<div class="card-body">
-						<div class="d-flex">
-							<h3 class="font-weight-semibold mb-0">{{$keyActived}}</h3>
-							<span class="badge bg-teal-800 badge-pill align-self-center ml-auto">
-								<i class="fa fa-key"></i>
-							</span>
-		            	</div>
-
-		            	<div>
-							<a>Key đã kích hoạt</a>
-							<div class="font-size-sm opacity-75"></div>
-						</div>
-					</div>
-
-					<div class="container-fluid">
-
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="card bg-teal-400">
-					<div class="card-body">
-						<div class="d-flex">
-							<h3 class="font-weight-semibold mb-0">{{$keyNotActived}}</h3>
-							<span class="badge bg-teal-800 badge-pill align-self-center ml-auto">
-								<i class="fa fa-key"></i>
-							</span>
-		            	</div>
-
-		            	<div>
-							<a>Key chưa kích hoạt</a>
-							<div class="font-size-sm opacity-75"></div>
-						</div>
-					</div>
-
-					<div class="container-fluid">
-
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="card bg-teal-400">
-					<div class="card-body">
-						<div class="d-flex">
-							<h3 class="font-weight-semibold mb-0">{{$customerCount}}</h3>
-							<span class="badge bg-teal-800 badge-pill align-self-center ml-auto">
-								<i class="fa fa-user"></i>
-							</span>
-		            	</div>
-		            	<div>
-							<a>Khách hàng sử dụng (Dựa theo Email đăng ký)</a>
-							<div class="font-size-sm opacity-75"></div>
-						</div>
-					</div>
-					<div class="container-fluid">
-					</div>
-				</div>
-			</div>
-		</div> --}}
+        
         <div class="card-header">
             <div class="card card-custom gutter-b" style="width: 100%">
                 <div class="card-header card-header-tabs-line" style="padding: 0px">
@@ -161,7 +100,7 @@
 									<tr>
 					                    <td>
 											<p>
-					                    		<b>Tên</b>: <a class="text-success-600" href="{{route('admin.user.profile', ['id' => $key->customer_id])}}">{{$key->customer_name}}</a>
+					                    		<b>Tên</b>: <a class="text-success-600" href="@if(!empty($key->customer)){{route('admin.user.profile', ['id' => $key->customer->id])}}@else{{'#'}}@endif">{{$key->customer_name}}</a>
 					                    	</p>
 											<p>
 												<b>Email</b>: <a class="text-success-600" href="{{route('admin.customer.edit', ['id' => $key->id])}}">{{ $key->customer_email }}</a>
@@ -413,6 +352,11 @@
 												<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
 													<button class="btn btn-sm btn-danger" type="submit">
 														<i class="flaticon2-rubbish-bin-delete-button"></i>
+													</button>
+												</a>
+												<a href="{{route('admin.email.form-send', ['email' => $key->customer_email])}}" target="_blank">
+													<button data-toggle="tooltip" data-theme="dark" title="Gửi mail thông báo" class="btn btn-sm btn-primary" type="button">
+														<i class="flaticon2-send-1"></i>
 													</button>
 												</a>
 											</td>

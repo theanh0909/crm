@@ -449,7 +449,7 @@ class CertificateController extends Controller
     public function certificateDetail($name)
     {
         $transactionDuplicate = TransactionWait::where('name_upload', $name)->orderBy('customer_name', 'asc')->get()->groupBy('customer_name', 'customer_email', 'customer_phone', 'product_type');
-        $transactions = TransactionWait::where('name_upload', $name)->paginate(30);
+        $transactions = TransactionWait::where('name_upload', $name)->paginate(20);
 
         return view('admin.certificates.detail', compact('transactions', 'transactionDuplicate'));
     }

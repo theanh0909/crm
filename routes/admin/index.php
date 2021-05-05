@@ -273,5 +273,6 @@ Route::group(['prefix' => 'backup', 'as' => 'backup.', 'middleware' => ['pms:bac
 
 Route::group(['prefix' => 'tool'], function(){
     Route::get('/convert', 'ToolController@convertCustomer');
+    Route::get('/convert-registered-table', 'ToolController@convertCustomerFromRegistered');
 });
 //die('xxx');
