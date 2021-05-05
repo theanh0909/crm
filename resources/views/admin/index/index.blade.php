@@ -354,6 +354,11 @@
 														<i class="flaticon2-rubbish-bin-delete-button"></i>
 													</button>
 												</a>
+												<a href="{{route('admin.email.form-send', ['email' => $key->customer_email])}}" target="_blank">
+													<button data-toggle="tooltip" data-theme="dark" title="Gửi mail thông báo" class="btn btn-sm btn-primary" type="button">
+														<i class="flaticon2-send-1"></i>
+													</button>
+												</a>
 											</td>
 										</tr>
 									@endforeach

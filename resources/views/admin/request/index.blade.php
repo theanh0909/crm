@@ -182,6 +182,7 @@
                 }
                 if(data.success == true) {
                     $('#rqrow-' + id).remove();
+                    alert(data.message);
                 }
             },
             error: function(e) {
