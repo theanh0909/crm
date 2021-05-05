@@ -146,31 +146,53 @@ class AdminController extends Controller
 
     public function inputEdit(Request $request, $id)
     {
-        $inputs = $request->all();
+        try {
+            $inputs = $request->all();
+            $transaction = Transaction::findOrFail($id);
 
-        Transaction::updateOrCreate(
-            [
-                'id' => $id
-            ],
-            $inputs
-        );
-        if (!empty($request->donate_product)) {
-            if ($request->donate_product != "NULL") {
-                $donate_key = 1;
+            if ($inputs['price'] != $transaction->price) {
+                $inputs['price'] = $inputs['price'];
             } else {
-                $donate_key = 0;
+                $product = Product::select('price', 'product_type')->where('product_type', $inputs['product_type'])->first();
+                $inputs['price'] = $product->price * $inputs['qty'];
             }
+            
+            $customer = Customer::updateOrCreate(
+                ['email' => $inputs['customer_email']],
+                [
+                    'name' => $inputs['customer_name'],
+                    'phone' => $inputs['customer_phone'],
+                    'address' => $inputs['customer_address'],
+                    'city' => $inputs['customer_cty']
+                ]
+            );
+            $inputs['customer_id'] = $customer->id;
             Transaction::updateOrCreate(
                 [
                     'id' => $id
                 ],
-                [
-                    'donate_key' => $donate_key
-                ]
+                $inputs
             );
-        }
-        
-        return back()->with('success', 'Đã cập nhật');
+            if (!empty($request->donate_product)) {
+                if ($request->donate_product != "NULL") {
+                    $donate_key = 1;
+                } else {
+                    $donate_key = 0;
+                }
+                Transaction::updateOrCreate(
+                    [
+                        'id' => $id
+                    ],
+                    [
+                        'donate_key' => $donate_key
+                    ]
+                );
+            }
+
+            return back()->with('success', 'Đã cập nhật');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }        
     }
 
     public function getProduct($productId, $count, $total)

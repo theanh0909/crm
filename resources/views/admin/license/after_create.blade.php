@@ -9,7 +9,7 @@
             <h3 class="card-title">DANH SACH KEY VỪA TẠO</h3><br>
         </div>
         <div class="card-header" style="align-content: center; justify-content: left">
-            <form action="{{route('admin.license.export-excel-selected')}}" method="POST" target="_blank">
+            <form style="100%" action="{{route('admin.license.export-excel-selected')}}" method="POST" target="_blank">
                 @csrf
                 @foreach($datas as $item)
                     <input type="hidden" name="id[]" value="{{$item['id']}}">

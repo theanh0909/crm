@@ -24,6 +24,7 @@
         <div class="card-header" style="padding-top: 10px">
             {{-- Viết nội dung ở đây --}}
             <p>Không phải mình thì là ai?</p>
+            
             <p>GXD gánh trên vai sứ mệnh Chuyển đổi số ngành xây dựng Việt Nam. Cung cấp các giải pháp các giải pháp chuyển đổi số cho các doanh nghiệp xây dựng, chủ đầu tư, ban quản lý dự án, tư vấn...</p>
             <p>GXD là công ty hàng đầu Việt Nam cung cấp hệ sinh thái các phần mềm Quản lý xây dựng, Quản lý dự án.</p>
             <p>GXD sẽ là công ty có môi trường làm việc êm đềm, nhẹ nhàng, các nhân viên tự giác, yêu công việc. Phương châm: được làm công việc yêu thích và có thu nhập tốt bạn thấy như là không phải làm việc.</p>

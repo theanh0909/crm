@@ -179,8 +179,7 @@
 								<tbody>
 					                @foreach($keyDue as $key)
 										<tr>
-
-											<td>
+											<td width="400px">
 												<p>
 													<b>Tên</b>: <a class="text-success-600" href="@if(!empty($key->customer)){{route('admin.user.profile', ['id' => $key->customer->id])}}@else{{'#'}}@endif">{{$key->customer_name}}</a>
 												</p>
@@ -246,16 +245,33 @@
 												@endif
 											</td>
 											<td>
-												<a href="{{route('admin.delete-key', ['id' => $key->id])}}" onclick="return confirm('Xác nhận xóa!')">
-													<button class="btn btn-sm btn-danger" type="button" data-toggle="tooltip" data-theme="dark" title="Xóa">
-														<i class="flaticon2-rubbish-bin-delete-button"></i>
-													</button>
-												</a>
-												<a href="{{route('admin.email.form-send', ['email' => $key->customer_email])}}" target="_blank">
-													<button data-toggle="tooltip" data-theme="dark" title="Gửi mail thông báo" class="btn btn-sm btn-primary" type="button">
-														<i class="flaticon2-send-1"></i>
-													</button>
-												</a>
+												<div class="dropdown">
+													<a href="#" class="btn btn-light-primary font-weight-bold dropdown-toggle" data-toggle="dropdown">
+														<i class="flaticon2-gear text-primary"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-sm">
+														<ul class="navi">
+															<li class="navi-item">
+																<a class="navi-link" target="_blank" href="{{route('admin.email.form-send', ['email' => $key->customer_email])}}">
+																	<span class="navi-icon"><i class="flaticon2-send-1"></i></span>
+																	<span class="navi-text">Gửi mail</span>
+																</a>
+															</li>
+															<li class="navi-item">
+																<a href="#" class="navi-link" href="#">
+																	<span class="navi-icon"><i class="flaticon-edit-1"></i></span>
+																	<span class="navi-text">Sửa</span>
+																</a>
+															</li>
+															<li class="navi-item">
+																<a onclick="return confirm('Xác nhận xóa?')" href="{{route('admin.delete-key', ['id' => $key->id])}}" class="navi-link" href="#">
+																	<span class="navi-icon"><i class="flaticon2-rubbish-bin-delete-button"></i></span>
+																	<span class="navi-text">Xóa</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
 											</td>
 										</tr>
 									@endforeach

@@ -83,9 +83,9 @@
                                 @endif
                             </td>
                             <td>
-                                <p><i style="margin-right: 5px" class="flaticon2-user"></i> {{$item->customer_name}}</p>
-                                <p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i> {{$item->customer_email}}</p>
-                                <p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{$item->customer_phone}}</p>
+                                <p><i style="margin-right: 5px" class="flaticon2-user"></i> {{$item->customer->name}}</p>
+                                <p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i> {{$item->customer->email}}</p>
+                                <p><i style="margin-right: 5px" class="flaticon2-phone"></i>{{$item->customer->phone}}</p>
                             </td>
                             <td scope="row">{{$item->qty}}</td>
                             <td scope="row">{{number_format($item->price, 0, ',', '.')}}</td>

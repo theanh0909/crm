@@ -89,9 +89,8 @@
                         <div class="radio-inline row">
                             @php($i = 0)
                             @foreach($products as $key => $val)
-                                <?php $checked = ($i == 0) ? true : false; ?>
                                 <label class="col-lg-2 radio radio-solid">
-                                    <input type="radio" name="product_type" value="{{$key}}" />
+                                    <input @if($i == 0){{'checked'}}@endif type="radio" name="product_type" value="{{$key}}" />
                                     <span></span>{{$val}}
                                 </label>
                                 @php($i++)
@@ -117,7 +116,7 @@
             <div class="card-footer">
                 <div class="row justify-content-center">
                     <div class="col-lg-12" style="text-align: center;">
-                        <button type="submit" class="btn btn-primary mr-2">Gửi</button>
+                        <button type="submit" class="btn btn-primary mr-2">Tạo</button>
                         <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </div>

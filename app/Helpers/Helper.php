@@ -159,7 +159,8 @@ class Helper
 
     
     public static function countKey($product_type, $status) {
-		return License::where('hardware_id', 'NA')
+		return License::select('product_type', 'status', 'hardware_id', 'status', 'email_customer')
+                        ->where('hardware_id', 'NA')
                         ->where('product_type', $product_type)
                         ->where('status', $status)
 						->whereNull('email_customer')

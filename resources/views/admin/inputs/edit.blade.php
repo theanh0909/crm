@@ -15,34 +15,34 @@
             <div class="card-body">
                 <div class="form-group row">
                     <div class="col-lg-4">
+                        <label class="col-form-label">Email <i class="fa fa-asterisk color-red font-size-7"></i></label>
+                        {{Form::text('customer_email', $transaction->customer->email, ['class' => 'form-control', 'required' => 'required'])}}
+                    </div>
+                    <div class="col-lg-4">
                         <label class="col-form-label">Họ tên <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        {{Form::text('customer_name', $transaction->customer_name, ['class' => 'form-control'])}}
+                        {{Form::text('customer_name', $transaction->customer->name, ['class' => 'form-control'])}}
                     </div>
                     <div class="col-lg-4">
                         <label class="col-form-label">Số điện thoại <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        {{Form::text('customer_phone', $transaction->customer_phone, ['class' => 'form-control', 'required' => 'required'])}}
-                    </div>
-                    <div class="col-lg-4">
-                        <label class="col-form-label">Email <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        {{Form::text('customer_email', $transaction->customer_email, ['class' => 'form-control', 'required' => 'required'])}}
+                        {{Form::text('customer_phone', $transaction->customer->phone, ['class' => 'form-control', 'required' => 'required'])}}
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-4">
                         <label class="col-form-label">Địa chỉ</label>
-                        {{Form::text('customer_address', $transaction->customer_address, ['class' => 'form-control'])}}
+                        {{Form::text('customer_address', $transaction->customer->address, ['class' => 'form-control'])}}
                     </div>
                     <div class="col-lg-4">
                         <label class="col-form-label">Tỉnh thành</label>
-                        <select class="js-example-basic-single form-control" name="custtomer_cty">
+                        <select class="js-example-basic-single form-control" name="customer_cty">
                             @foreach($provinces as $provinceItem)
                                 @if ($provinceItem->provinceid == '01TTT' || $provinceItem->provinceid == '79TTT' || $provinceItem->provinceid == '56TTT')
-                                    <option @if($transaction->customer_cty == $provinceItem->name){{'selected'}}@endif value="{{$provinceItem->name}}">{{$provinceItem->name}}</option>
+                                    <option @if($transaction->customer->city == $provinceItem->name){{'selected'}}@endif value="{{$provinceItem->name}}">{{$provinceItem->name}}</option>
                                 @endif
                             @endforeach
                             @foreach($provinces as $provinceItem)
                                 @if ($provinceItem->provinceid != '01TTT' && $provinceItem->provinceid != '79TTT' && $provinceItem->provinceid != '56TTT')
-                                    <option @if($transaction->customer_cty == $provinceItem->name){{'selected'}}@endif value="{{$provinceItem->name}}">{{$provinceItem->name}}</option>
+                                    <option @if($transaction->customer->city == $provinceItem->name){{'selected'}}@endif value="{{$provinceItem->name}}">{{$provinceItem->name}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -55,23 +55,25 @@
                         @endif
                     </div>
                 </div>
-                @if($transaction->customer_type == 3)
-                    <div class="col-lg-4">
-                        <label class="col-form-label">Lĩnh vực theo NĐ <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        <textarea required class="form-control" name="decree" id="" cols="30" rows="2">{{$transaction->decree}}</textarea>
-                    </div>
-                    <div class="col-lg-4">
-                        <label class="col-form-label">Lĩnh vực <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        <textarea required class="form-control" name="type_exam" id="" cols="30" rows="2">{{$transaction->type_exam}}</textarea>
-                    </div>
-                    <div class="col-lg-4">
-                        <label class="col-form-label">Hạng <i class="fa fa-asterisk color-red font-size-7"></i></label>
-                        <textarea required class="form-control" name="class" id="" cols="30" rows="2">{{$transaction->class}}</textarea>
-                    </div>
-                    <div class="col-lg-12">
-                        <p style="color: red">* Chú ý: (Mỗi nghị định, lĩnh vực, hạng cách nhau bằng dấu ; và không được đặt dấu ; ở cuối)</p>
-                    </div>
-                @endif
+                <div class="row">
+                    @if($transaction->customer_type == 3)
+                        <div class="col-lg-4">
+                            <label class="col-form-label">Lĩnh vực theo NĐ <i class="fa fa-asterisk color-red font-size-7"></i></label>
+                            <textarea required class="form-control" name="decree" id="" cols="30" rows="2">{{$transaction->decree}}</textarea>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-form-label">Lĩnh vực <i class="fa fa-asterisk color-red font-size-7"></i></label>
+                            <textarea required class="form-control" name="type_exam" id="" cols="30" rows="2">{{$transaction->type_exam}}</textarea>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-form-label">Hạng <i class="fa fa-asterisk color-red font-size-7"></i></label>
+                            <textarea required class="form-control" name="class" id="" cols="30" rows="2">{{$transaction->class}}</textarea>
+                        </div>
+                        <div class="col-lg-12">
+                            <p style="color: red">* Chú ý: (Mỗi nghị định, lĩnh vực, hạng cách nhau bằng dấu ; và không được đặt dấu ; ở cuối)</p>
+                        </div>
+                    @endif
+                </div>
                 <div class="form-group">
                     <div class="col-lg-12">
                         <div class="test1 form-group row">

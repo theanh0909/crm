@@ -254,7 +254,8 @@ class CustomerController extends Controller
             'number_can_change_key',
             'license_expire_date',
             'license_status',
-            'product_type'
+            'product_type',
+            'hardware_id'
         ]);
         $customer = Registered::where('id', $id)->with(['license'])->first();
         

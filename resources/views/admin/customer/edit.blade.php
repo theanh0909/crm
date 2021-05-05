@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-lg-6">
                         <label>Hardware ID:</label>
-                        {{Form::text('', $customer->hardware_id, ['class' => 'form-control', 'readonly' => true])}}
+                        {{Form::text('hardware_id', $customer->hardware_id, ['class' => 'form-control', 'readonly' => false])}}
                     </div>
                 </div>
                 <div class="form-group row">

@@ -416,7 +416,9 @@ class LicenseController extends Controller
 
     public function keyStore()
     {
-        $productTypes   = Product::where('type', Product::TYPE_SOFWTWARE)->with('license')->get();
+        $productTypes   = Product::where('type', Product::TYPE_SOFWTWARE)
+                                ->with('license')
+                                ->get();
 
         return view('admin.license.key_store', compact('productTypes'));
     }

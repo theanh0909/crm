@@ -18,6 +18,7 @@
                     <th scope="col">Sản phẩm</th>
                     <th scope="col">Key thương mại</th>
                     <th scope="col">Key dùng thử</th>
+                    <th scope="col">Key lớp học</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,9 @@
                         </td>
                         <td scope="row">
                             {{number_format(\App\Helpers\Helper::countKey($productTypeItem->product_type, 0))}}
+                        </td>
+                        <td>
+                            {{number_format(\App\Helpers\Helper::countKey($productTypeItem->product_type, 2))}}
                         </td>
                     </tr>
                 @endforeach
