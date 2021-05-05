@@ -224,7 +224,7 @@
                                                         <li class="navi-item">
                                                             <a class="navi-link" onclick="submitformx('#deleteCM{{$item->id}}', 'Xác nhận xóa?')">
                                                                 <span class="navi-icon"><i class="flaticon2-rubbish-bin-delete-button"></i></span>
-                                                                <span class="navi-text">Xác nhận xóa</span>
+                                                                <span class="navi-text">Xóa</span>
                                                             </a>
                                                         </li>
                                                     @endif
