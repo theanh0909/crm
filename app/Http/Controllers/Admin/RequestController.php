@@ -158,16 +158,16 @@ class RequestController extends Controller
     public function _approveCertificate($data)
     {
         Registered::create([
-            'customer_name' => $data->customer_name,
-            'customer_email'    => $data->customer_email,
-            'customer_phone'    => $data->customer_phone,
+            'customer_name' => $data->customer->name,
+            'customer_email'    => $data->customer->email,
+            'customer_phone'    => $data->customer->phone,
             'qty'               => $data->qty,
             'price'             => $data->price,
             'license_original'  => $data->license_original,
             'hardware_id'       => 'CHUNGCHI',
             'product_type'      => $data->product_type,
-            'customer_address'  => $data->customer_address,
-            'customer_cty'      => $data->customer_cty,
+            'customer_address'  => $data->customer->address,
+            'customer_cty'      => $data->customer->city,
             'user_support_id'   => $data->user_request_id,
             'transaction_id'    => $data->id,
         ]);
@@ -177,22 +177,23 @@ class RequestController extends Controller
         $data->save();
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'Duyệt thành công'
         ]);
     }
 
     public function _approveHashware($data) {
         Registered::create([
-            'customer_name' => $data->customer_name,
-            'customer_email'    => $data->customer_email,
-            'customer_phone'    => $data->customer_phone,
+            'customer_name' => $data->customer->name,
+            'customer_email'    => $data->customer->email,
+            'customer_phone'    => $data->customer->phone,
             'qty'               => $data->qty,
             'price'             => $data->price,
             'license_original'  => $data->license_original,
             'hardware_id'       => 'KHOACUNG',
             'product_type'      => $data->product_type,
-            'customer_address'  => $data->customer_address,
-            'customer_cty'      => $data->customer_cty,
+            'customer_address'  => $data->customer->address,
+            'customer_cty'      => $data->customer->city,
             'user_support_id'   => $data->user_request_id,
             'transaction_id'    => $data->id,
         ]);
@@ -201,8 +202,8 @@ class RequestController extends Controller
         $userCreate     = $data->user;
 
         if($email) {
-            MailService::sendEmailProduct($email, $data->customer_email, $data->customer_name, $data->license_original, 1);
-            MailService::sendEmailProduct($email, $userCreate->email, $data->customer_name, $data->license_original, 1);
+            MailService::sendEmailProduct($email, $data->customer->email, $data->customer->name, $data->license_original, 1);
+            MailService::sendEmailProduct($email, $userCreate->email, $data->customer->name, $data->license_original, 1);
         }
 
         $data->status           = Transaction::STATUS_APPROVE;
@@ -211,22 +212,23 @@ class RequestController extends Controller
         $data->save();
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'Duyệt thành công'
         ]);
     }
 
     public function _approveCourse($data) {
         Registered::create([
-            'customer_name'     => $data->customer_name,
-            'customer_email'    => $data->customer_email,
-            'customer_phone'    => $data->customer_phone,
+            'customer_name'     => $data->customer->name,
+            'customer_email'    => $data->customer->email,
+            'customer_phone'    => $data->customer->phone,
             'qty'               => $data->qty,
             'price'             => $data->price,
             'license_original'  => $data->license_original,
             'hardware_id'       => 'KHOAHOC',
             'product_type'      => $data->product_type,
-            'customer_address'  => $data->customer_address,
-            'customer_cty'      => $data->customer_cty,
+            'customer_address'  => $data->customer->address,
+            'customer_cty'      => $data->customer->city,
             'user_support_id'   => $data->user_request_id,
             'option'            => $data->option,
             'transaction_id'    => $data->id,
@@ -250,15 +252,15 @@ class RequestController extends Controller
                 if ($emailDonate) {
                     $email = Email::where('product_type', $license->product_type)->first();
 
-                    MailService::sendEmailProduct($email, $data->customer_email, $data->customer_name,$licenses[0]->license_key, 1);
+                    MailService::sendEmailProduct($email, $data->customer->email, $data->customer->name,$licenses[0]->license_key, 1);
 
-                    MailService::sendEmailProduct($email, $userCreate->email, $data->customer_name,$licenses[0]->license_key, 1);
+                    MailService::sendEmailProduct($email, $userCreate->email, $data->customer->name,$licenses[0]->license_key, 1);
 
                     License::where('license_key', $licenses[0]->license_key)->update(
                         [
                             'status_register' => 1,
                             'status_email' => 1,
-                            'email_customer' => $data->customer_email,
+                            'email_customer' => $data->customer->email,
                             'sell_date' => date('Y-m-d'),
                             'status_sell' => 1,
                             'exported_status' => License::EP_EXPORT_EMAIL,
@@ -289,8 +291,8 @@ class RequestController extends Controller
         if ($email) {
             dispatch(new SendEmailKey(
                 $data->product_type,
-                $data->customer_email,
-                $data->customer_name,
+                $data->customer->email,
+                $data->customer->name,
                 $data->license_original,
                 1,
                 $userCreate->email
@@ -303,14 +305,15 @@ class RequestController extends Controller
         $data->save();
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'Duyệt thành công'
         ]);
     }
 
     public function _approveSoftware($data)
     {
         $qty                = $data->qty;
-        $customer_email     = $data->customer_email;
+        $customer_email     = $data->customer->email;
         $userCreate         = $data->user;
 
         $query = License::where('product_type', $data->product_type)
@@ -352,8 +355,8 @@ class RequestController extends Controller
                 $license->id_user           = $data->user_request_id;
                 $license->save();
                 // SEND MAIL
-                MailService::sendEmailProduct($email, $customer_email, $data->customer_name, $license->license_key, $license->status);
-                MailService::sendEmailProduct($email, $userCreate->email, $data->customer_name, $license->license_key, $license->status);
+                MailService::sendEmailProduct($email, $customer_email, $data->customer->name, $license->license_key, $license->status);
+                MailService::sendEmailProduct($email, $userCreate->email, $data->customer->name, $license->license_key, $license->status);
             }
             $data->status           = Transaction::STATUS_APPROVE;
             $data->time_approve     = Carbon::now()->format('Y-m-d H:i:s');
@@ -361,7 +364,8 @@ class RequestController extends Controller
             $data->save();
 
             return response()->json([
-                'success' => true
+                'success' => true,
+                'message' => 'Duyệt thành công'
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -490,8 +494,8 @@ class RequestController extends Controller
 
             $userCreate     = $data->user;
 
-            MailService::sendEmailProduct($email, $data->customer_email, $data->customer_name, $data->license_original, 1);
-            MailService::sendEmailProduct($email, $userCreate->email, $data->customer_name, $data->license_original, 1);
+            MailService::sendEmailProduct($email, $data->customer->email, $data->customer->name, $data->license_original, 1);
+            MailService::sendEmailProduct($email, $userCreate->email, $data->customer->name, $data->license_original, 1);
 
             $data->status           = Transaction::STATUS_APPROVE;
             $data->time_approve     = Carbon::now()->format('Y-m-d H:i:s');
