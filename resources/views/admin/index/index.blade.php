@@ -111,6 +111,11 @@
 											<p>
 												<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 											</p>
+											<p>
+												@for($i = 1; $i <= 7; $i++)
+													<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
+												@endfor
+											</p>
 										</td>
 					                    
 					                    <td><span class="text-success-600">{{$key->product->name}}</span></td>
@@ -191,6 +196,11 @@
 												</p>
 												<p>
 													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
+												</p>
+												<p>
+													@for($i = 1; $i <= 7; $i++)
+														<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
+													@endfor
 												</p>
 											</td>
 											<td>
@@ -322,6 +332,11 @@
 												<p>
 													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 												</p>
+												<p>
+													@for($i = 1; $i <= 7; $i++)
+														<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
+													@endfor
+												</p>
 											</td>
 											<td><span class="text-success-600">{{$key->product->name}}</span></td>
 											<td>
@@ -414,6 +429,17 @@
     .card.card-custom{
         box-shadow: none;
     }
+	.type-customer{
+		border-radius: 3px;
+		padding: 2px 10px;
+		border: 1px solid #ccc;
+		color: #727272;
+	}
+	.type-active{
+		background: #3699FF !important;
+		color: #fff !important;
+		border-color: #3699FF !important;
+	}
 </style>
 @endsection
 
@@ -435,6 +461,31 @@
            }
        })
     },1000));
+
+	$('.type-customer').click(function(){
+		$('.type-customer').removeClass('type-active');
+		$(this).addClass('type-active');
+		point = $(this).attr('point');
+		userId = $(this).attr('userId');
+		var dataPost = {
+          type:   point,
+          userId: userId,
+          _token: "{{csrf_token()}}"
+        };
+		$.ajax({
+           url: "{{route('admin.customer.rating')}}",
+           method: 'POST',
+           data: dataPost,
+           success: function(e) {
+			   if (e.status == true) {
+				   alert('Phân loại thành công');
+			   } else {
+				   alert('Lỗi');
+			   }
+           }
+       })
+	})
+
     $('.status-care').click(function(){
     	$(this).removeClass();
     	var me = $(this);

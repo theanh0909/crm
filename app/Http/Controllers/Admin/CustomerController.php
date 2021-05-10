@@ -18,6 +18,7 @@ use App\Repositories\CustomerRepositoryInterface;
 use App\Repositories\LicenseRepositoryInterface;
 use App\Services\Production\MailService;
 use App\User;
+use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -38,6 +39,17 @@ class CustomerController extends Controller
     {
         $this->customerRepository = $customerRepository;
         $this->licenseRepository  = $licenseRepository;
+    }
+
+    public function rating(Request $request)
+    {
+        try {
+            Customer::where('id', $request->userId)->update(['type' => $request->type]);
+
+            return response()->json(['status' => true]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => false]);
+        }
     }
 
     public function importCertificateForm()

@@ -51,6 +51,7 @@ Route::group(['prefix' => 'sendy', 'as' => 'sendy.'], function(){
 });
 
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function() {
+    Route::post('/rating', 'CustomerController@rating')->name('rating');
     Route::get('/classify', 'CustomerController@classify')->name('classify'); // đã convert
     Route::get('no-paid', 'CustomerController@noPaid')->name('no-paid'); // đã convert
     Route::get('confirm-pay/{id}', 'CustomerController@confirmPay')->name('confirm-pay'); // đã convert
