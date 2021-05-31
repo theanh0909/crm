@@ -74,6 +74,10 @@
                                     {{Form::radio('license_status', '0', ($customer->license->status == 0) ? true : false, ['class' => 'form-check-input'] )}}
                                     <span></span>Thử nghiệm
                                 </label>
+                                <label class="radio radio-solid">
+                                    {{Form::radio('license_status', '0', ($customer->license->status == 2) ? true : false, ['class' => 'form-check-input'] )}}
+                                    <span></span>Lớp học
+                                </label>
                             </div>
                         </div>
                     </div>

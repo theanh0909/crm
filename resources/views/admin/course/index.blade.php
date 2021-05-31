@@ -257,7 +257,7 @@
                             </span>
                         </td>
                         <td>
-                            <textarea cols="30" rows="4" class="noteaction" data-id="{{$item->id}}">{{$item->note}}</textarea>
+                            <textarea class="form-control" cols="30" rows="4" class="noteaction" data-id="{{$item->id}}">{{$item->note}}</textarea>
                         </td>
                         <td>
                             {{Form::open(['url' => route('admin.customer.delete',
