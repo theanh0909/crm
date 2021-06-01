@@ -84,9 +84,12 @@ class ExportStatistical implements FromCollection, WithHeadings, WithMapping, Sh
         $profit = $outputPrice * $discount / 100;
 
         return [
-            $item->customer_name,
-            $item->customer_phone,
-            $item->customer_email,
+            // $item->customer_name,
+            // $item->customer_phone,
+            // $item->customer_email,
+            !empty($item->customer) ? $item->customer->name : $item->customer_name,
+            !empty($item->customer) ? $item->customer->email : $item->customer_email,
+            !empty($item->customer) ? $item->customer->phone : $item->customer_phone,
             ($item->product) ? $item->product->name : $item->product_type,
             date('d/m/Y', strtotime($item->created_at)),
             date('d/m/Y', strtotime($item->time_approve)),

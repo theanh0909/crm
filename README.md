@@ -192,4 +192,10 @@ Nhóm 1: Khách hàng mục tiêu (những người mong muốn mua hàng, nhữ
                 </p>
                 <p>
                 Nhóm 7: Khách hàng cuồng nhiệt (Raving fan): (bạn có thể như 1 ca sỹ, cầu thủ ủng hộ - sẵn sàng bán hàng cho bạn vì bất kì điều kiện nào, chỉ bởi vì thích), nếu xây dựng nhóm này tốt, kinh doanh sẽ ở tầm cao mới.
-                </p>  
+                </p>
+
+Route: Question
+- Làm thế nào để Internet kết nối được với khái niệm tiện lợi của chúng ta?
+- Làm thế nào để chúng ta gắn nó với mẫu số chung là dòng tiền trên mỗi lần khách hàng ghé qua?
+- Làm thế nào chúng ta dùng trang web để nâng cao những gì chúng ta đã làm tốt hơn các công ty khác trên thế giới và theo cách khiến chúng chúng ta đam mê?
+- GXD là 1 công ty đi lên từ bò, đến đi bộ, rồi mới chạy.
