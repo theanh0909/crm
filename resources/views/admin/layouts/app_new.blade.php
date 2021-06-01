@@ -782,8 +782,15 @@
 	<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 
 		<!--begin::Item-->
+		<li class="nav-item mb-2" data-toggle="tooltip" title="Gửi key" data-placement="left">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="{{route('admin.license.not-actived', ['product_type' => 'DutoanGXD2020'])}}">
+				<i class="flaticon2-gear"></i>
+			</a>
+		</li>
+		<!--end::Item-->
+		<!--begin::Item-->
 		<li class="nav-item mb-2" data-toggle="tooltip" title="Thêm đơn hàng" data-placement="left">
-			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="{{ route('admin.input') }}" target="_blank">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="{{ route('admin.input') }}">
 				<i class="flaticon2-gear"></i>
 			</a>
 		</li>

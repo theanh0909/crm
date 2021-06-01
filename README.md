@@ -199,3 +199,4 @@ Route: Question
 - Làm thế nào để chúng ta gắn nó với mẫu số chung là dòng tiền trên mỗi lần khách hàng ghé qua?
 - Làm thế nào chúng ta dùng trang web để nâng cao những gì chúng ta đã làm tốt hơn các công ty khác trên thế giới và theo cách khiến chúng chúng ta đam mê?
 - GXD là 1 công ty đi lên từ bò, đến đi bộ, rồi mới chạy.
+-  lên server pull đi anhg
