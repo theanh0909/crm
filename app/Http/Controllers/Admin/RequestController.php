@@ -236,7 +236,7 @@ class RequestController extends Controller
 
         $userCreate     = $data->user;
 
-        if($data->donate_key == 1) {
+        if ($data->donate_key == 1) {
             $licenses = License::getLicenseFree(2, $data->donate_product, 1, '365');
 
             if (count($licenses) == 0) {
@@ -286,11 +286,11 @@ class RequestController extends Controller
             }
         };
 
-        $email          = Email::where('product_type', $data->product_type)->first();
+        $email          = Email::where('product_type', $data->donate_product)->first();
     // check gửi mail
         if ($email) {
             dispatch(new SendEmailKey(
-                $data->product_type,
+                $data->donate_product,
                 $data->customer->email,
                 $data->customer->name,
                 $data->license_original,

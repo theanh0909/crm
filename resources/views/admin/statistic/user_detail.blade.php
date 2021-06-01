@@ -122,7 +122,7 @@
 						<td align="center">{{$loop->index + 1}}</td>
 						@if($userID == -1)
 						<td>
-							{{$item->user_request_id}}
+							{{$item->user->fullname}}
 						</td>
 						@endif
 						<td>
