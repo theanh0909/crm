@@ -31,7 +31,7 @@
 							<div class="row align-items-center">
 								<div class="col-md-3 my-2 my-md-0">
 									<div class="d-flex align-items-center">
-										<select class="form-control" id="kt_select2_1" name="product">
+										<select class="form-control" id="kt_select2_1" name="user_id">
 											<option value="0">Chọn nhân viên</option>
 											<option value="-1" selected>Tất cả</option>
 											@foreach($users as $user)
@@ -79,9 +79,7 @@
 				<thead>
 					<tr>
 						<th scope="col">Stt</th>
-						@if($userID == -1)
 						<th scope="col">NV</th>
-						@endif
 						<th scope="col">Khách hàng</th>
 						<th scope="col">Sản phẩm</th>
 						<th scope="col">SL</th>
@@ -120,11 +118,9 @@
 
 					<tr>
 						<td align="center">{{$loop->index + 1}}</td>
-						@if($userID == -1)
 						<td>
 							{{$item->user->fullname}}
 						</td>
-						@endif
 						<td>
 							<p><i style="margin-right: 5px" class="flaticon2-user"></i>{{!empty($item->customer) ? $item->customer->name : $item->customer_name}}</p>
 							<p style="display: flex;"><i style="margin-right: 5px" class="flaticon2-new-email"></i>{{!empty($item->customer) ? $item->customer->email : $item->customer_email}}</p>
@@ -232,7 +228,7 @@
 			</table>
 			<div class="row">
 				@if(count($transactions) > 0 && ($userID == auth()->user()->id || auth()->user()->level > 0))
-				{{$transactions->appends(['user_id' => $userID, 'date' => $date, 'submit' => 'thongke', 'customer_type' => $customerType])->links()}}
+					{{$transactions->appends(['user_id' => $userID, 'date' => $date, 'submit' => 'thongke', 'customer_type' => $customerType])->links()}}
 				@endif             
 			</div>            
 		</div>
@@ -345,7 +341,6 @@
 							{{number_format($tong)}}
 						</th>
 					</tr>
-
 				</tfoot>
 				@else
 				<tbody>
