@@ -4,7 +4,7 @@
 @include('admin.layouts.includes.breadcrumb', ['item1' => 'Customer', 'item2' => 'Gia hạn'])
 <div class="container">
     <!--begin::Card-->
-    <div class="card card-custom gutter-b example example-compact">
+    <div class="card card-custom overflow-x gutter-b example example-compact">
         <div class="card-header">
             <h3 class="card-title">GIA HẠN KEY CHO KHÁCH HÀNG - {{$customer->customer_name}}</h3>
         </div>

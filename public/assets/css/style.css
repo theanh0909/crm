@@ -23,3 +23,9 @@
 .action i{
 	font-size: 13px !important;
 }
+.overflow-x{
+	overflow-x: auto;
+}
+.card-custom{
+	overflow-x: auto;
+}
