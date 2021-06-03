@@ -36,7 +36,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="/">
-				<img alt="Logo" src="images/logo.png" />
+				<img alt="Logo" src="images/logo.png" width="100px"/>
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->

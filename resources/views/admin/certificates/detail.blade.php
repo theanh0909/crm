@@ -8,7 +8,7 @@
 @section('content')
 @include('admin.layouts.includes.breadcrumb', ['item1' => 'Chứng chỉ', 'item2' => 'Import dữ liệu thi chứng chỉ'])
 <div class="container">
-    <div class="card card-custom">
+    <div class="card card-custom overflow-x">
         <div class="card-header py-3">
             <div class="card-title">
                 <span class="card-icon">

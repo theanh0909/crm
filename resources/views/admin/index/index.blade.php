@@ -81,7 +81,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-body" style="padding: 2rem 0px">
+                <div class="card-body overflow-x" style="padding: 2rem 0px;">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="kt_tab_pane_1_4" role="tabpanel" aria-labelledby="kt_tab_pane_1_4">
                             <table class="table text-nowrap">
