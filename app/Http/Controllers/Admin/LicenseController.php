@@ -301,7 +301,7 @@ class LicenseController extends Controller
         $pageAlias = 'emailsended';
 
         return view('admin.license.send_email_today', compact(
-            'licenses', 'productTypes', 'inputs', 'pageActive','title', 'pageAlias'
+            'licenses', 'productTypes', 'inputs', 'pageActive','title', 'pageAlias', 'filters'
         ));
     }
 

@@ -51,6 +51,11 @@ class Product extends Model
         return $this->hasMany(License::class, 'product_type', 'product_type');
     }
 
+    public function registered()
+    {
+        return $this->hasMany(Registered::class, 'product_type', 'product_type');
+    }
+
      public static function boot() {
          parent::boot();
 
