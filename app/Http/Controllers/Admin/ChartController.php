@@ -27,14 +27,45 @@ class ChartController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function region()
+    public function region(Request $request)
     {
         $regions        = Registered::groupBy('customer_cty')->select('customer_cty')->get();
         $productions    = Product::orderBy('id', 'ASC')->get();
         $productionsPL  = Product::orderBy('id', 'ASC')->pluck('product_type');
+        $products = Product::query();
+        $inputs = $request->all();
+        
+        if (isset($request->region)) {
+            $products->withCount(['registered' => function($query) use ($request){
+                                    $query->where('customer_cty', $request->region);
+                                }])
+                                ->get();
+        } else {
+            $products->withCount(['registered' => function($query){
+                                    $query->where('customer_cty', 'Hà Nội');
+                                }])
+                                ->get();
+        }
+        if (isset($request->product) && $request->product != -1) {
+            $products->where('product_type', $request->product);
+        }
+        $products = $products->get();
+        
+        return view('admin.chart.region_new', compact(
+            'regions',
+            'productions',
+            'products',
+            'inputs'
+        ));
+    }
 
+    public function region_old()
+    {
+        $regions        = Registered::groupBy('customer_cty')->select('customer_cty')->get();
+        $productions    = Product::orderBy('id', 'ASC')->get();
+        $productionsPL  = Product::orderBy('id', 'ASC')->pluck('product_type');
         $resultsValue = [];
-        foreach($regions as $region) {
+        foreach($regions as $key => $region) {
             $countByProduct = Registered::whereIn('product_type', $productionsPL)
                                 ->where('customer_cty', $region->customer_cty)
                                 ->groupBy('product_type', 'customer_cty')
@@ -52,10 +83,15 @@ class ChartController extends Controller
             $resultsValue[] = array_values($resultCount);
         }
 
-        return view('admin.chart.region', compact(
+        // return view('admin.chart.region', compact(
+        //     'regions',
+        //     'productions',
+        //     'resultsValue'
+        // ));
+        return view('admin.chart.region_new', compact(
             'regions',
             'productions',
-            'resultsValue'
+            'resultsValue',
         ));
     }
 
