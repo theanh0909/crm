@@ -111,6 +111,14 @@
 		</li>
 		<!--end::Item-->
 
+		<!--begin::Item-->
+		<li class="nav-item mb-2" style="margin-top: 20px" data-toggle="tooltip" title="Duyệt đơn hàng" data-placement="left">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="{{route('admin.request.index')}}">
+				<i class="flaticon2-accept"></i>
+			</a>
+		</li>
+		<!--end::Item-->
+
 	</ul>
 	<!--end::Sticky Toolbar-->
 	<!--begin::Global Config(global config for global JS scripts)-->

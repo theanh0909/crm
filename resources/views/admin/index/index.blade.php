@@ -112,9 +112,11 @@
 												<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 											</p>
 											<p>
-												@for($i = 1; $i <= 7; $i++)
-													<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
-												@endfor
+												{{-- <button class="btn-sm btn btn-info" data-toggle="tooltip" data-theme="dark" title="" for="reset-key10111" type="button" onclick="submitformx('#reset-key10111', 'Xác nhận đặt lại key?')" data-original-title="Đặt lại Key"><i class="flaticon-refresh"></i>
+											</button> --}}
+												@foreach (config('constant') as $i=> $item)
+													<button data-toggle="tooltip" data-theme="dark" type="button" data-original-title="{{$item}}" point="{{$i+1}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == ($i+1)){{'type-active'}}@endif type-customer">{{$i+1}}</button>
+												@endforeach
 											</p>
 										</td>
 					                    
@@ -198,9 +200,9 @@
 													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 												</p>
 												<p>
-													@for($i = 1; $i <= 7; $i++)
-														<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
-													@endfor
+													@foreach (config('constant') as $i=> $item)
+														<button data-toggle="tooltip" data-theme="dark" type="button" data-original-title="{{$item}}" point="{{$i+1}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == ($i+1)){{'type-active'}}@endif type-customer">{{$i+1}}</button>
+													@endforeach
 												</p>
 											</td>
 											<td>
@@ -333,9 +335,12 @@
 													<b>Địa chỉ</b>: <span class="text-success-600">{{ $key->customer_address }}</span>
 												</p>
 												<p>
-													@for($i = 1; $i <= 7; $i++)
+													@foreach (config('constant') as $i=> $item)
+														<button data-toggle="tooltip" data-theme="dark" type="button" data-original-title="{{$item}}" point="{{$i+1}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == ($i+1)){{'type-active'}}@endif type-customer">{{$i+1}}</button>
+													@endforeach
+													{{-- @for($i = 1; $i <= 7; $i++)
 														<button point="{{$i}}" userId="@if(!empty($key->customer)){{$key->customer->id}}@endif" type="button" class="@if(!empty($key->customer) && $key->customer->type == $i){{'type-active'}}@endif type-customer">{{$i}}</button>
-													@endfor
+													@endfor --}}
 												</p>
 											</td>
 											<td><span class="text-success-600">{{$key->product->name}}</span></td>

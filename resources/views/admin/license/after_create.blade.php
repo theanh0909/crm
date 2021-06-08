@@ -45,6 +45,8 @@
                         <td align="center">
                             @if($item['status'] == 0)
                                 Key thử nghiệm
+                            @elseif($item['status'] == 2)
+                                Key lớp học
                             @else
                                 Key thương mại
                             @endif

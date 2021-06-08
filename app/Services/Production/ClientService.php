@@ -11,6 +11,7 @@ use App\Models\Settings;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PhpOffice\PhpSpreadsheet\Shared\OLE\PPS;
 
 class ClientService extends BaseService
 {
@@ -79,16 +80,27 @@ class ClientService extends BaseService
     protected function checkResetup($params) {
         $customer = Registered::where('hardware_id', $params['client_hardware_id'])
                                 ->where('product_type', $params['product'])
-                                ->first();
-        if($customer) {
-            $customer->last_runing_date = Carbon::now()->format('Y-m-d');
-            $customer->save();
-            if($customer->license_expire_date >= Carbon::now()->format('Y-m-d')) {
-                return "#BEGIN_RES#KEY_VALID#" . $customer->license_original.  "#END_RES#";
-            }
-        }
+                                ->get();
+        $dem = 0;
 
-        return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+        if (count($customer) > 0) {
+            foreach ($customer as $customerItem) {
+                $customerItem->last_runing_date = Carbon::now()->format('Y-m-d');
+                $customerItem->save();
+                
+                if ($customerItem->license_expire_date >= Carbon::now()->format('Y-m-d')) {
+                    $dem++;
+                    $license_original = $customerItem->license_original;
+                }
+            }
+            if ($dem > 0) {
+                return "#BEGIN_RES#KEY_VALID#" . $license_original.  "#END_RES#";
+            } else {
+                return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+            }
+        } else {
+            return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+        }
     }
 
     protected function checkResetup2($params) {
