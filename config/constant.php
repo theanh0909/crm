@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'Khách hàng tiềm năng1',
-    'Khách hàng tiềm năng2',
-    'Khách hàng tiềm năng3',
-    'Khách hàng tiềm năng4',
-    'Khách hàng tiềm năng5',
-    'Khách hàng tiềm năng6',
-    'Khách hàng tiềm năng7',
+    'Khách hàng tiềm năng',
+    'Khách hàng quan tâm',
+    'Khách hàng mua hàng',
+    'Khách hàng khách hàng mua nhiều lần',
+    'Khách hàng trung thành',
+    'Khách hàng rất trung thành',
+    'Khách hàng cuồng nhiệt',
 ];
