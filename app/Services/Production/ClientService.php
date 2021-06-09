@@ -107,16 +107,27 @@ class ClientService extends BaseService
         $customer = Registered::where('customer_email', $params['customer_email'])
                         ->where('hardware_id', $params['client_hardware_id'])
                         ->where('product_type', $params['product'])
-                        ->first();
-        if($customer) {
-            $customer->last_runing_date = Carbon::now()->format('Y-m-d');
-            $customer->save();
-            if($customer->license_expire_date >= Carbon::now()->format('Y-m-d')) {
-                return "#BEGIN_RES#KEY_VALID#" . $customer->license_original.  "#END_RES#";
-            }
-        }
+                        ->get();
+        $dem = 0;
 
-        return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+        if (count($customer) > 0) {
+            foreach ($customer as $customerItem) {
+                $customerItem->last_runing_date = Carbon::now()->format('Y-m-d');
+                $customerItem->save();
+                
+                if ($customerItem->license_expire_date >= Carbon::now()->format('Y-m-d')) {
+                    $dem++;
+                    $license_original = $customerItem->license_original;
+                }
+            }
+            if ($dem > 0) {
+                return "#BEGIN_RES#KEY_VALID#" . $license_original.  "#END_RES#";
+            } else {
+                return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+            }
+        } else {
+            return '#BEGIN_RES#NOT_ACCESS#END_RES#';
+        }
     }
 
     protected function checkExpire($params) {
@@ -310,8 +321,8 @@ class ClientService extends BaseService
         if(!$license) {
             return "#BEGIN_RES#KEY_NOTVALID#" . $splitcardkey . "#END_RES#";
         }
-
         $customer = $license->customer;
+
         if($customer) {
             if($customer->customer_email == $params['customer_email']) {
                 $checkKeyExpire = (strtotime(Carbon::parse($customer->license_activation_date)->addDays($license->type_expire_date)->format('Y-m-d')) > time()) ? true : false;
