@@ -104,10 +104,15 @@ class ClientService extends BaseService
     }
 
     protected function checkResetup2($params) {
+        // $customer = Registered::where('customer_email', $params['customer_email'])
+        //                 ->where('hardware_id', $params['client_hardware_id'])
+        //                 ->where('product_type', $params['product'])
+        //                 ->first();
         $customer = Registered::where('customer_email', $params['customer_email'])
                         ->where('hardware_id', $params['client_hardware_id'])
                         ->where('product_type', $params['product'])
-                        ->first();
+                       ->latest('license_expire_date ')
+                        ->get();
         if($customer) {
             $customer->last_runing_date = Carbon::now()->format('Y-m-d');
             $customer->save();
