@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="card-body" style="padding: 2rem 0px">
-                    {{ Form::open(['route' => 'admin.user.store', 'method' => 'POST']) }}
+                    {{ Form::open(['url' => route('admin.user.update', ['user' => $user->id]), 'method' => 'PATCH']) }}
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="kt_tab_pane_1_4" role="tabpanel" aria-labelledby="kt_tab_pane_1_4">
                                 <div class="form-group row">
