@@ -11,6 +11,7 @@ use App\Imports\ImportHashkeyCustomer;
 use App\Imports\ImportCertificate;
 use App\Models\Email;
 use App\Models\License;
+use App\Models\RegisteredEdit;
 use App\Models\Product;
 use App\Models\Registered;
 use App\Models\Transaction;
@@ -271,11 +272,23 @@ class CustomerController extends Controller
         ]);
         $customer = Registered::where('id', $id)->with(['license'])->first();
         
-        if($customer->license) {
-            if($customer->product_type !== $inputs['product_type'] || $customer->license->status !== $inputs['license_status']) {
+        if ($customer->license) {
+            if ($inputs['license_status'] != $customer->license->status) {
+                RegisteredEdit::updateOrCreate(
+                    [
+                        'registered_id' => $customer->id,
+                        'status' => 0 // trạng thái chưa duyệt
+                    ],
+                    [
+                        'license_id' => $customer->license->id,
+                        'type_key' => $inputs['license_status'],
+                    ]
+                );
+            }
+            if ($customer->product_type !== $inputs['product_type'] || $customer->license->status !== $inputs['license_status']) {
                 $license = $customer->license;
                 $license->product_type = $inputs['product_type'];
-                $license->status       = $inputs['license_status'];
+                // $license->status       = $inputs['license_status'];
                 $license->save();
             }
         } else {
@@ -293,13 +306,63 @@ class CustomerController extends Controller
             'product_type' => $request->product_type,
             'price' => $customer->product->price
         ]);
-
         $this->customerRepository->update($customer, $inputs);
 
         return back()->with('success', 'Cập nhật thành công');
-        // return redirect()->route('admin.customer.index')->with([
-        //     'success' => 'Update thông tin khách hành thành công'
-        // ]);
+    }
+
+    public function listRegisteredEdit()
+    {
+        $registeredEdits = RegisteredEdit::latest('id')->where('status', 0)->paginate(20);
+
+        return view('admin.customer.list_registered_edit', compact('registeredEdits'));
+    }
+
+    public function deleteRegistered($id)
+    {
+        $data = RegisteredEdit::find($id);
+        $data->delete();
+
+        return back()->with('success', 'Xóa thành công');
+    }
+
+    public function approveRegistered($id)
+    {
+        try {
+            $data = RegisteredEdit::find($id);
+            $license = License::find($data->license_id);
+            $registered = Registered::find($data->registered_id);
+            DB::beginTransaction();
+
+            if (($license->status == 0 || $license->status == 2) && $data->type_key == 1) {
+                $license->status = $data->type_key;
+                $license->save();
+                $registered->update([
+                    'license_activation_date' => date('Y-m-d'),
+                    'license_expire_date' => date('Y-m-d', strtotime('+1 year')),
+                    'price' => $registered->product->price
+                ]);
+                // nếu không có $registered->transaction thì không thể tìm được ai sẽ là người dk hưởng hoa hồng
+                if (!empty($registered->transaction)) {
+                    $inputs = $registered->transaction->toArray();
+                    $inputs['price'] = $registered->product->price;
+                    $inputs['product_type'] = $registered->product_type;
+                    $inputs['status'] = 1;
+                    $inputs['license_id'] = $license->id;
+                    $inputs['time_approve'] = date('Y-m-d H:i:s');
+                    Transaction::create($inputs);
+                }
+            }
+            $data->status = 1;
+            $data->save();
+            DB::commit();
+
+            return back()->with('success', 'Duyệt thành công');
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return back()->with('error', 'Thất bại');
+        }
     }
 
     public function delete($id)

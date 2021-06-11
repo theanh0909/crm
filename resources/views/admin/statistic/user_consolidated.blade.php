@@ -94,7 +94,6 @@
                     <tbody>
                         
                         @foreach($transactions as $key => $item)
-                            
                             <tr>
                                 <td>
                                     {{$key+1}}
