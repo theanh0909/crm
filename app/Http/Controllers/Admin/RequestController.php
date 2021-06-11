@@ -286,18 +286,17 @@ class RequestController extends Controller
             }
         };
 
-        $email          = Email::where('product_type', $data->donate_product)->first();
-    // check gửi mail
-        if ($email) {
-            dispatch(new SendEmailKey(
-                $data->donate_product,
-                $data->customer->email,
-                $data->customer->name,
-                $data->license_original,
-                1,
-                $userCreate->email
-            ));
-        } 
+        // $email          = Email::where('product_type', $data->donate_product)->first();
+        // if ($email) {
+        //     dispatch(new SendEmailKey(
+        //         $data->donate_product,
+        //         $data->customer->email,
+        //         $data->customer->name,
+        //         $data->license_original,
+        //         1,
+        //         $userCreate->email
+        //     ));
+        // } 
 
         $data->status           = Transaction::STATUS_APPROVE;
         $data->time_approve     = Carbon::now()->format('Y-m-d H:i:s');

@@ -51,6 +51,9 @@ Route::group(['prefix' => 'sendy', 'as' => 'sendy.'], function(){
 });
 
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function() {
+    Route::get('/list-registered-edit', 'CustomerController@listRegisteredEdit')->name('list-registered-edit');
+    Route::get('/list-registered-edit/approve/{id}', 'CustomerController@approveRegistered')->name('approve-registered');
+    Route::get('/list-registered-edit/delete/{id}', 'CustomerController@deleteRegistered')->name('delete-registered');
     Route::post('/rating', 'CustomerController@rating')->name('rating');
     Route::get('/classify', 'CustomerController@classify')->name('classify'); // đã convert
     Route::get('no-paid', 'CustomerController@noPaid')->name('no-paid'); // đã convert

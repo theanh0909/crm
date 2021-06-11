@@ -65,17 +65,25 @@
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label>Loại key:</label>
+                            {{-- Chỉ được phép sửa từ key thử nghiệm lên key thương mại --}}
                             <div class="radio-inline">
                                 <label class="radio radio-solid">
                                     {{Form::radio('license_status', '1', ($customer->license->status == 1) ? true : false, ['class' => 'form-check-input'] )}}
                                     <span></span>Thương mại
                                 </label>
                                 <label class="radio radio-solid">
-                                    {{Form::radio('license_status', '0', ($customer->license->status == 0) ? true : false, ['class' => 'form-check-input'] )}}
+                                    <input class="form-check-input" @if($customer->license->status != 0){{'disabled'}}@elseif($customer->license->status == 0){{'checked'}}@endif type="radio" name="license_status" value="0">
+                                    {{-- @if ($customer->license->status != 0)
+                                        
+                                        {{Form::radio('license_status', '0', ['class' => 'form-check-input', 'readonly' => 'true'] )}}
+                                    @else
+                                        {{Form::radio('license_status', '0', ($customer->license->status == 0) ? true : false, ['class' => 'form-check-input'] )}}
+                                    @endif --}}
                                     <span></span>Thử nghiệm
                                 </label>
                                 <label class="radio radio-solid">
-                                    {{Form::radio('license_status', '0', ($customer->license->status == 2) ? true : false, ['class' => 'form-check-input'] )}}
+                                    <input class="form-check-input" @if($customer->license->status == 1){{'disabled'}}@elseif($customer->license->status == 2){{'checked'}}@endif type="radio" name="license_status" value="2">
+                                    {{-- {{Form::radio('license_status', '2', ($customer->license->status == 2) ? true : false, ['class' => 'form-check-input'] )}} --}}
                                     <span></span>Lớp học
                                 </label>
                             </div>
