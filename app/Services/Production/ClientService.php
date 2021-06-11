@@ -80,7 +80,7 @@ class ClientService extends BaseService
     protected function checkResetup($params) {
         $customer = Registered::where('hardware_id', $params['client_hardware_id'])
                                 ->where('product_type', $params['product'])
-                                ->latest('license_expire_date ')
+                                ->latest('license_expire_date')
                                 ->get();
         $dem = 0;
 
@@ -113,7 +113,7 @@ class ClientService extends BaseService
         $customer = Registered::where('customer_email', $params['customer_email'])
                         ->where('hardware_id', $params['client_hardware_id'])
                         ->where('product_type', $params['product'])
-                        ->latest('license_expire_date ')
+                        ->latest('license_expire_date')
                         ->get();
         $dem = 0;
 
