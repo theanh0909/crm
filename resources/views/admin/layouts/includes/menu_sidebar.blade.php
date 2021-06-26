@@ -149,6 +149,18 @@
 										</a>
 									</li>
 								@endif
+								@if(can('approve-registered'))
+									<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+										<a href="{{route('admin.customer.list-registered-edit')}}" class="menu-link menu-toggle">
+											<span class="svg-icon menu-icon">
+												<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+												<i class="flaticon2-accept"></i>
+												<!--end::Svg Icon-->
+											</span>
+											<span class="menu-text">Duyệt đơn hàng sửa</span>
+										</a>
+									</li>
+								@endif
 								</li><li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="{{route('admin.request.myRequest')}}" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
