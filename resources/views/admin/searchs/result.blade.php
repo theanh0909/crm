@@ -414,7 +414,101 @@
             </div>
         </div>
         <div class="row">
-            {!! $licenses->appends(['query' => $query])->links() !!}
+            {!! $transactions->appends(['query' => $query])->links() !!}
+        </div>
+    @endif
+    <br>
+    @if(count($licenses) > 0)
+        <div class="card card-custom">
+            <div class="card-header py-3">
+                <div class="card-title">
+                    <span class="card-icon">
+                        <span class="svg-icon svg-icon-md svg-icon-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <rect fill="#000000" opacity="0.3" x="12" y="4" width="3" height="13" rx="1.5" />
+                                    <rect fill="#000000" opacity="0.3" x="7" y="9" width="3" height="8" rx="1.5" />
+                                    <path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#000000" fill-rule="nonzero" />
+                                    <rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5" />
+                                </g>
+                            </svg>
+                        </span>
+                    </span>
+                    <h3 class="card-label">
+                        Key đã gửi chờ kích hoạt
+                    </h3>
+                </div>
+            </div>
+            <div class="card-header">
+                <table class="table">
+                    <thead>
+                    <tr align="center">
+                        <th width="250">Mã License</th>
+                        <th>SP</th>
+                        <th>Loại Key</th>
+                        <th>Số ngày</th>
+                        <th>Email</th>
+                        <th width="150">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($licenses as $item)
+                        <tr id="row-{{$item->id}}">
+                            {{--<td>{{$loop->index + 1}}</td>--}}
+                            <td>
+                                @if($item->customer)
+                                    <a href="{{route('admin.customer.edit', ['id' => $item->customer->id])}}">{{$item->license_key}}</a>
+                                @else
+                                    {{$item->license_key}}
+                                @endif
+                            </td>
+                            <td>{{($item->product) ? $item->product->name : ''}}</td>
+                            <td>
+                                @if($item->status == 0)
+                                    Key thử nghiệm
+                                @else
+                                    Key thương mại
+                                @endif
+                            </td>
+                            <td>{{$item->type_expire_date}}</td>
+                            
+                            @if($pageAlias == 'emailsended' || $pageAlias == 'notactive')
+                                <td>
+                                    <input autocomplete="off" data-id="{{$item->id}}" class="inputemail form-control" id="inputemail-{{$item->id}}" type="text" value="{{$item->email_customer}}">
+                                </td>
+                            @endif
+                            <td>
+
+                                @if($pageAlias == 'emailsended' && $item->email_customer != '')
+                                    {!! Form::open(['url' => route('admin.license.sendMailCustomer', ['id' => $item->id]), 'method' => 'POST']) !!}
+                                    <button type="submit" class="btn btn-sm btn-success" data-dismiss="modal">Gửi lại</button>
+                                    {!! Form::close() !!}
+                                @endif
+                            </td>
+                            <td>
+                                {{Form::open(['url' => route('admin.license.destroy', ['id' => $item->id]), 'method' => 'DELETE'])}}
+                                    @if(can('license-edit'))
+                                        <a class="btn btn-sm btn-warning" href="{{route('admin.license.edit', ['id' => $item->id])}}">
+                                            <i class="flaticon-edit-1"></i>
+                                        </a>
+                                    @endif
+                                
+                                    <input type="hidden" name="license_id" value="{{$item->id}}"/>
+                                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Xác nhận xóa key!')">
+                                        <i class="flaticon2-rubbish-bin-delete-button"></i>
+                                    </button>
+                                {{Form::close()}}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="text-right" style="padding: 10px;">
+                {!! $licenses->appends(['query' => $query])->links() !!}
+            </div>
         </div>
     @endif
 </div>
@@ -463,6 +557,9 @@
            method: 'POST',
            data: dataPost,
            success: function(e) {
+               if (e == false) {
+                   alert('Bạn không có quyền');
+               }
            }
        })
     },1000));
