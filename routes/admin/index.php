@@ -68,7 +68,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function() {
     Route::get('/{id}/renewed', 'CustomerController@getRenewed')->name('getRenewed'); // đã convert
     Route::put('/{id}/renewed', 'CustomerController@postRenewed')->name('postRenewed'); // đã convert
 
-    Route::post('/editComment', 'CustomerController@editComment')->name('editComment'); // đã convert
+    Route::post('/editComment', 'CustomerController@editComment')->name('editComment')->middleware(['pms:comment']); // đã convert
     Route::post('/editBackground', 'CustomerController@editBackground')->name('editBackground'); // đã convert
 
     Route::get('/listHashKeyCustomer', 'CustomerController@listHashKeyCustomer')->name('listHashKeyCustomer'); // đã convert
