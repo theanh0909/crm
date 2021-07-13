@@ -58,7 +58,7 @@ class ExportVacc implements FromCollection, WithHeadings, WithMapping, ShouldAut
     {
         return [
             ($transactionItem->status_vacc == 0) ? 'Chưa trả' : 'Đã trả',
-            $transactionItem->customer_name,
+            empty($transactionItem->customer) ? $transactionItem->customer_name : $transactionItem->customer->name,
             $transactionItem->product->name,
             date('d/m/Y' ,strtotime($transactionItem->updated_at)),
             date('d/m/Y' ,strtotime($transactionItem->time_approve)),
